@@ -1,8 +1,5 @@
 package org.hamcrest.core;
 
-//import static org.hamcrest.core.AllOf.allOf;
-//import static org.hamcrest.core.IsEqual.equalTo;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;

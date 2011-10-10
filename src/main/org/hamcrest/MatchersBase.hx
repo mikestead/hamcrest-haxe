@@ -31,7 +31,13 @@ import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.hamcrest.collection.IsHashContaining;
 
-class MatcherBuilderBase
+
+/**
+ * Currently (Haxe 2.08, 10.9.11) it is not possible to import static methods to use in a class.
+ * There is a feature request open for this http://code.google.com/p/haxe/issues/detail?id=365
+ * (please go and star/vote for it!) but until it's resolved you'll need to extend this class.
+ */
+class MatchersBase
 {
 	private function new()
 	{}
@@ -40,86 +46,86 @@ class MatcherBuilderBase
 	{
 		MatcherAssert.assertThat(valueOne, valueTwo, matcher, info);
 	}
-	
-    public function allOf<T>(first:Dynamic, 
+
+    public function allOf<T>(first:Dynamic,
     							 ?second:Matcher<T>,
-    							 ?third:Matcher<T>, 
-    							 ?fourth:Matcher<T>, 
-    							 ?fifth:Matcher<T>, 
-    							 ?sixth:Matcher<T>, 
-    							 ?seventh:Matcher<T>, 
-    							 ?eighth:Matcher<T>, 
-    							 ?ninth:Matcher<T>, 
+    							 ?third:Matcher<T>,
+    							 ?fourth:Matcher<T>,
+    							 ?fifth:Matcher<T>,
+    							 ?sixth:Matcher<T>,
+    							 ?seventh:Matcher<T>,
+    							 ?eighth:Matcher<T>,
+    							 ?ninth:Matcher<T>,
     							 ?tenth:Matcher<T>):AllOf<T>
 	{
-    	return AllOf.allOf(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);				 
+    	return AllOf.allOf(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);
 	}
 
-    public function anyOf<T>(first:Dynamic, 
+    public function anyOf<T>(first:Dynamic,
     							 ?second:Matcher<T>,
-    							 ?third:Matcher<T>, 
-    							 ?fourth:Matcher<T>, 
-    							 ?fifth:Matcher<T>, 
-    							 ?sixth:Matcher<T>, 
-    							 ?seventh:Matcher<T>, 
-    							 ?eighth:Matcher<T>, 
-    							 ?ninth:Matcher<T>, 
+    							 ?third:Matcher<T>,
+    							 ?fourth:Matcher<T>,
+    							 ?fifth:Matcher<T>,
+    							 ?sixth:Matcher<T>,
+    							 ?seventh:Matcher<T>,
+    							 ?eighth:Matcher<T>,
+    							 ?ninth:Matcher<T>,
     							 ?tenth:Matcher<T>):AnyOf<T>
 	{
-    	return AnyOf.anyOf(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);				 
+    	return AnyOf.anyOf(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);
 	}
-	
-    public function both<LHS>(matcher:Matcher<LHS>):CombinableMatcher<LHS> 
+
+    public function both<LHS>(matcher:Matcher<LHS>):CombinableMatcher<LHS>
     {
         return CombinableMatcher.both(matcher);
     }
 
-    public function either<LHS>(matcher:Matcher<LHS>):CombinableMatcher<LHS>  
+    public function either<LHS>(matcher:Matcher<LHS>):CombinableMatcher<LHS>
     {
         return CombinableMatcher.either(matcher);
     }
 
-    public function describedAs<T>(description:String, matcher:Matcher<T>, ?values:Array<Dynamic>):Matcher<T> 
+    public function describedAs<T>(description:String, matcher:Matcher<T>, ?values:Array<Dynamic>):Matcher<T>
     {
         return DescribedAs.describedAs(description, matcher, values);
     }
-    
+
 	public function everyItem<T>(itemMatcher:Matcher<T>):Matcher<Iterable<T>>
 	{
 		return Every.everyItem(itemMatcher);
 	}
-		
+
 	public function is<T>(value:Dynamic):Matcher<T>
 	{
 		return Is.is(value);
 	}
-	
+
     public function anything(?description:String):Matcher<Dynamic>
     {
         return IsAnything.anything(description);
     }
-    
+
     public function hasItem<T>(value:Dynamic):Matcher<Iterable<T>>
     {
     	return IsCollectionContaining.hasItem(value);
     }
-    
+
     public function hasItems<T, U>(values:Array<U>):Matcher<Iterable<T>>
     {
     	return IsCollectionContaining.hasItems(values);
     }
-    
+
 //    public function equalTo<T>(operand:T):Matcher<T>
     public function equalTo<T>(operand:Dynamic):Matcher<T>
     {
         return IsEqual.equalTo(operand);
     }
-    
+
     public function instanceOf<T>(type:Class<Dynamic>):Matcher<T>
     {
         return IsInstanceOf.instanceOf(type);
     }
-    
+
     public function any<T>(type:Class<T>):Matcher<T>
     {
         return IsInstanceOf.any(type);
@@ -129,37 +135,37 @@ class MatcherBuilderBase
     {
 		return IsNot.not(value);
     }
-    
+
     public function nullValue<T>(?type:Class<T>):Matcher<T>
     {
     	return IsNull.nullValue(type);
     }
-    
+
     public function notNullValue<T>(?type:Class<T>):Matcher<T>
     {
         return IsNull.notNullValue(type);
     }
-    
+
     public function sameInstance<T>(object:T):Matcher<T>
     {
         return IsSame.sameInstance(object);
     }
-    
+
     public function containsString(substring:String):Matcher<String>
     {
         return StringContains.containsString(substring);
     }
-    
+
     public function endsWith(substring:String):Matcher<String>
     {
         return StringEndsWith.endsWith(substring);
     }
-    
+
     public function startsWith(substring:String):Matcher<String>
     {
         return StringStartsWith.startsWith(substring);
     }
-    
+
     /**
      * @return Is value = expected?
      */
@@ -199,24 +205,24 @@ class MatcherBuilderBase
     {
         return OrderingComparison.lessThanOrEqualTo(value);
     }
-    
+
     /**
      * Evaluates to true only if each matcher[i] is satisfied by array[i].
      */
-    public function array<T>(first:Dynamic, 
+    public function array<T>(first:Dynamic,
     							 ?second:Matcher<T> = null,
-    							 ?third:Matcher<T> = null, 
-    							 ?fourth:Matcher<T> = null, 
-    							 ?fifth:Matcher<T> = null, 
-    							 ?sixth:Matcher<T> = null, 
-    							 ?seventh:Matcher<T> = null, 
-    							 ?eighth:Matcher<T> = null, 
-    							 ?ninth:Matcher<T> = null, 
+    							 ?third:Matcher<T> = null,
+    							 ?fourth:Matcher<T> = null,
+    							 ?fifth:Matcher<T> = null,
+    							 ?sixth:Matcher<T> = null,
+    							 ?seventh:Matcher<T> = null,
+    							 ?eighth:Matcher<T> = null,
+    							 ?ninth:Matcher<T> = null,
     							 ?tenth:Matcher<T> = null):IsArray<T>
     {
-    	return IsArray.array(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);				 
+    	return IsArray.array(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);
     }
-    
+
     /**
      * Evaluates to true if any item in an array satisfies the given matcher.
      */
@@ -224,90 +230,90 @@ class MatcherBuilderBase
     {
     	return IsArrayContaining.hasItemInArray(element);
     }
-    
+
     public function closeTo(operand:Float, error:Float):Matcher<Float>
     {
         return new IsCloseTo(operand, error);
     }
-    
-    public function contains<T>(first:Dynamic, 
+
+    public function contains<T>(first:Dynamic,
 		    							 ?second:Dynamic,
-		    							 ?third:Dynamic, 
-		    							 ?fourth:Dynamic, 
-		    							 ?fifth:Dynamic, 
-		    							 ?sixth:Dynamic, 
-		    							 ?seventh:Dynamic, 
-		    							 ?eighth:Dynamic, 
-		    							 ?ninth:Dynamic, 
+		    							 ?third:Dynamic,
+		    							 ?fourth:Dynamic,
+		    							 ?fifth:Dynamic,
+		    							 ?sixth:Dynamic,
+		    							 ?seventh:Dynamic,
+		    							 ?eighth:Dynamic,
+		    							 ?ninth:Dynamic,
 		    							 ?tenth:Dynamic):Matcher<Iterable<T>>
 	{
 		return IsIterableContainingInOrder.contains(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);
 	}
-    
-    public function containsInAnyOrder<T>(first:Dynamic, 
+
+    public function containsInAnyOrder<T>(first:Dynamic,
 		    							 ?second:Dynamic,
-		    							 ?third:Dynamic, 
-		    							 ?fourth:Dynamic, 
-		    							 ?fifth:Dynamic, 
-		    							 ?sixth:Dynamic, 
-		    							 ?seventh:Dynamic, 
-		    							 ?eighth:Dynamic, 
-		    							 ?ninth:Dynamic, 
+		    							 ?third:Dynamic,
+		    							 ?fourth:Dynamic,
+		    							 ?fifth:Dynamic,
+		    							 ?sixth:Dynamic,
+		    							 ?seventh:Dynamic,
+		    							 ?eighth:Dynamic,
+		    							 ?ninth:Dynamic,
 		    							 ?tenth:Dynamic):Matcher<Iterable<T>>
 	{
 		return IsIterableContainingInAnyOrder.containsInAnyOrder(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);
 	}
-	
-    public function arrayContainingInAnyOrder<T>(first:Dynamic, 
+
+    public function arrayContainingInAnyOrder<T>(first:Dynamic,
 				    							 ?second:Dynamic,
-				    							 ?third:Dynamic, 
-				    							 ?fourth:Dynamic, 
-				    							 ?fifth:Dynamic, 
-				    							 ?sixth:Dynamic, 
-				    							 ?seventh:Dynamic, 
-				    							 ?eighth:Dynamic, 
-				    							 ?ninth:Dynamic, 
+				    							 ?third:Dynamic,
+				    							 ?fourth:Dynamic,
+				    							 ?fifth:Dynamic,
+				    							 ?sixth:Dynamic,
+				    							 ?seventh:Dynamic,
+				    							 ?eighth:Dynamic,
+				    							 ?ninth:Dynamic,
 				    							 ?tenth:Dynamic):Matcher<Array<T>>
 	{
 		return IsArrayContainingInAnyOrder.arrayContainingInAnyOrder(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);
 	}
-	
-    public function arrayContaining<T>(first:Dynamic, ?second:Dynamic, ?third:Dynamic, ?fourth:Dynamic, ?fifth:Dynamic, 
+
+    public function arrayContaining<T>(first:Dynamic, ?second:Dynamic, ?third:Dynamic, ?fourth:Dynamic, ?fifth:Dynamic,
     									?sixth:Dynamic, ?seventh:Dynamic, ?eighth:Dynamic, ?ninth:Dynamic, ?tenth:Dynamic):Matcher<Array<T>>
 	{
 		return IsArrayContainingInOrder.arrayContaining(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth);
 	}
-	
+
     public function arrayWithSize<T>(value:Dynamic):Matcher<Array<T>>
     {
     	return IsArrayWithSize.arrayWithSize(value);
     }
-    
-    public function emptyArray<E>():Matcher<Array<E>> 
+
+    public function emptyArray<E>():Matcher<Array<E>>
     {
     	return IsArrayWithSize.emptyArray();
     }
-    
+
 	public function emptyIterable<E>():Matcher<Iterable<E>>
     {
 		return IsEmptyIterable.emptyIterable();
     }
-    
+
     public function iterableWithSize<E>(value:Dynamic):Matcher<Iterable<E>>
     {
     	return IsIterableWithSize.iterableWithSize(value);
     }
-    
+
     public function hasEntry<V>(key:Dynamic, value:Dynamic):Matcher<Hash<V>>
     {
     	return IsHashContaining.hasEntry(key, value);
     }
-    
+
     public function hasKey(key:Dynamic):Matcher<Hash<Dynamic>>
     {
     	return IsHashContaining.hasKey(key);
     }
-    
+
     public function hasValue<V>(value:Dynamic):Matcher<Hash<V>>
     {
     	return IsHashContaining.hasValue(value);

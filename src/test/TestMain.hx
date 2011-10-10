@@ -10,12 +10,11 @@ import js.Dom;
 
 
 /**
- * Auto generated Test Application.	
+ * Auto generated Test Application.
  * Refer to munit command line tool for more information (haxelib run munit)
  */
-
-class TestMain 
-{		
+class TestMain
+{
 	static function main(){	new TestMain(); }
 
 	public function new()
@@ -23,12 +22,12 @@ class TestMain
 		var suites = new Array<Class<massive.munit.TestSuite>>();
 		suites.push(TestSuite);
 
-		var runner:TestRunner = new TestRunner(new PrintClient(true));
-//		runner.addResultClient(new HTTPClient(new JUnitReportClient()));	
+		var runner = new massive.munit.TestRunner(new PrintClient(true));
+//		runner.addResultClient(new HTTPClient(new JUnitReportClient()));
 		runner.completionHandler = completionHandler;
 		runner.run(suites);
 	}
-	
+
 	/*
 		updates the background color and closes the current browser
 		for flash and html targets (useful for continous integration servers)

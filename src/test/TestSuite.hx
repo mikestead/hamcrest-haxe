@@ -32,7 +32,6 @@ import org.hamcrest.MatcherAssertTest;
 import org.hamcrest.number.IsCloseToTest;
 import org.hamcrest.number.OrderingComparisonTest;
 import org.hamcrest.TypeSafeMatcherTest;
-import TypeParamTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -78,6 +77,5 @@ class TestSuite extends massive.munit.TestSuite
 		add(org.hamcrest.number.IsCloseToTest);
 		add(org.hamcrest.number.OrderingComparisonTest);
 		add(org.hamcrest.TypeSafeMatcherTest);
-		add(TypeParamTest);
 	}
 }
