@@ -1,10 +1,10 @@
 package org.hamcrest.core;
 
 import org.hamcrest.StringDescription;
-import org.hamcrest.MatcherBuilderBase;
+import org.hamcrest.MatchersBase;
 import massive.munit.Assert;
 
-class CombinableTest extends MatcherBuilderBase
+class CombinableTest extends MatchersBase
 {
     var EITHER_3_OR_4:CombinableMatcher<Dynamic>;
     var NOT_3_AND_NOT_4:CombinableMatcher<Dynamic>;
@@ -15,7 +15,7 @@ class CombinableTest extends MatcherBuilderBase
 		EITHER_3_OR_4 = either(equalTo(3)).or(equalTo(4));
 		NOT_3_AND_NOT_4 = both(not(equalTo(3))).and(not(equalTo(4)));
 	}
-	
+
     @Test
     public function bothAcceptsAndRejects()
     {
@@ -42,7 +42,7 @@ class CombinableTest extends MatcherBuilderBase
         Assert.areEqual("was <3>", mismatch.toString());
     }
 
-    @Test 
+    @Test
     public function eitherAcceptsAndRejects()
     {
         assertThat(3, EITHER_3_OR_4);

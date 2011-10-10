@@ -1,3 +1,7 @@
+/****
+* Copyright 2011 hamcrest.org. See LICENSE.txt
+****/
+
 package org.hamcrest.number;
 
 import org.hamcrest.Description;

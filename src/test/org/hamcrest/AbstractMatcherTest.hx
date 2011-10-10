@@ -4,7 +4,7 @@ import org.hamcrest.Exception;
 import massive.munit.Assert;
 import haxe.PosInfos;
 
-class AbstractMatcherTest extends MatcherBuilderBase
+class AbstractMatcherTest extends MatchersBase
 {
     /**
      * Create an instance of the Matcher so some generic safety-net tests can be run on it.
@@ -14,7 +14,7 @@ class AbstractMatcherTest extends MatcherBuilderBase
     	throw new MissingImplementationException();
     	return null;
     }
-    
+
     public function assertMatches<T>(message:String, c:Matcher<T>, arg:T, ?info:PosInfos)
     {
         Assert.isTrue(c.matches(arg), info);
@@ -53,7 +53,7 @@ class AbstractMatcherTest extends MatcherBuilderBase
     }
 }
 
-class UnknownType 
+class UnknownType
 {
 	public function new()
 	{

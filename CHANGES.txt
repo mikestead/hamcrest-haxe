@@ -1,0 +1,2 @@
+v1.0.0 - 10.9.11
+- Initial release. Ported appropriate code from Java version found at http://code.google.com/p/hamcrest/.
