@@ -1,22 +1,19 @@
 /****
 * Copyright 2011 hamcrest.org. See LICENSE.txt
 ****/
-
-/*  Copyright (c) 2000-2006 hamcrest.org
- */
 package org.hamcrest;
 
 import org.hamcrest.Exception;
 import haxe.PosInfos;
 
-class MatcherAssert 
+class MatcherAssert
 {
 	private function new()
 	{}
-	
+
 	public static function assertThat<T>(valueOne:Dynamic, ?valueTwo:Dynamic, ?matcher:Matcher<T>, ?info:PosInfos)
 	{
-		if (matcher != null && Std.is(valueOne, String) /*&& Std.is(valueTwo, T)*/)
+		if (Std.is(valueOne, String) && matcher != null)
 		{
 			assertThatMatch(valueOne, valueTwo, matcher, info);
 		}
@@ -24,11 +21,11 @@ class MatcherAssert
 		{
 			assertThatMatch("", valueOne, valueTwo, info);
 		}
-		else if (Std.is(valueOne, String) && matcher == null)
+		else if (Std.is(valueOne, String) && Std.is(valueTwo, Bool) && matcher == null)
 		{
-			assertThatBool(valueOne, cast(valueTwo, Bool), info);
+			assertThatBool(valueOne, valueTwo, info);
 		}
-		else if (valueTwo == null && matcher == null)
+		else if (Std.is(valueOne, Bool) && valueTwo == null && matcher == null)
 		{
 			assertThatBool("", valueOne, info);
 		}
@@ -37,10 +34,10 @@ class MatcherAssert
 			throw new IllegalArgumentException("Argument(s) where not of the expected type(s).");
 		}
 	}
-	
-	private static function assertThatMatch<T>(reason:String, actual:T, matcher:Matcher<T>, info:PosInfos)
+
+	static function assertThatMatch<T>(reason:String, actual:T, matcher:Matcher<T>, info:PosInfos)
 	{
-        if (!matcher.matches(actual)) 
+        if (!matcher.matches(actual))
         {
             var description = new StringDescription();
             description.appendText(reason)
@@ -48,12 +45,12 @@ class MatcherAssert
                        .appendDescriptionOf(matcher)
                        .appendText("\n     but: ");
             matcher.describeMismatch(actual, description);
-            
+
             throw new AssertionException(description.toString(), null, info);
         }
 	}
-    
-    private static function assertThatBool(reason:String, assertion:Bool, info:PosInfos)
+
+    static function assertThatBool(reason:String, assertion:Bool, info:PosInfos)
     {
         if (!assertion)
             throw new AssertionException(reason, null, info);
