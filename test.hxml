@@ -1,8 +1,10 @@
 # Flash 9+
 -main TestMain
+-lib munit
+-lib mcover
+#--macro massive.mcover.MCover.include('org.hamcrest', ['src/main'], null)
 -cp src/main
 -cp src/test
--lib munit
 -swf-version 9
 -swf build/as3_test.swf
 
@@ -10,9 +12,11 @@
 
 #Flash 8
 -main TestMain
+-lib munit
+-lib mcover
 -cp src/main
 -cp src/test
--lib munit
+#--macro massive.mcover.MCover.include('org.hamcrest', ['src/main'], null)
 -swf-version 8
 -swf build/as2_test.swf
 
@@ -20,16 +24,20 @@
 
 # JavaScript
 -main TestMain
+-lib munit
+-lib mcover
 -cp src/main
 -cp src/test
--lib munit
+#--macro massive.mcover.MCover.include('org.hamcrest', ['src/main'], null)
 -js build/js_test.js
 
 --next
 
 # Neko
 -main TestMain
+-lib munit
+-lib mcover
 -cp src/main
 -cp src/test
--lib munit
+#--macro massive.mcover.MCover.include('', ['src/main'], null)
 -neko build/neko_test.n
