@@ -5,30 +5,37 @@
 package org.hamcrest;
 import haxe.PosInfos;
 
-class Exception 
+class Exception
 {
-	public var name(default, null):String; 
-	public var message(default, null):String;        
-	public var cause(default, null):Dynamic;         
-	public var info(default, null):PosInfos; 
-	 
-	public function new(?message:String="", ?cause:Dynamic = null, ?info:PosInfos) 
-	{ 
-        this.name = Type.getClassName(Type.getClass(this)); 
-        this.message = message; 
-        this.cause = cause; 
-        this.info = info; 
-	} 
-	 
-	public function toString():String 
-	{ 
-        var str:String = name + ": " + message; 
-        if (info != null) 
-        	str += " at " + info.className + "#" + info.methodName + " (" + info.lineNumber + ")"; 
-        if (cause != null) 
-        	str += "\n\t Caused by: " + cause; 
-        return str; 
-	} 
+	public var name(get_name, null):String;
+	function get_name():String { return name; }
+
+	public var message(get_message, null):String;
+	function get_message():String { return message; }
+
+	public var cause(get_cause, null):Dynamic;
+	function get_cause():Dynamic { return cause; }
+
+	public var info(default, null):PosInfos;
+
+	public function new(?message:String="", ?cause:Dynamic = null, ?info:PosInfos)
+	{
+        this.name = Type.getClassName(Type.getClass(this));
+        this.message = message;
+        this.cause = cause;
+        this.info = info;
+	}
+
+
+	public function toString():String
+	{
+        var str:String = name + ": " + message;
+        if (info != null)
+        	str += " at " + info.className + "#" + info.methodName + " (" + info.lineNumber + ")";
+        if (cause != null)
+        	str += "\n\t Caused by: " + cause;
+        return str;
+	}
 }
 
 class IllegalArgumentException extends Exception

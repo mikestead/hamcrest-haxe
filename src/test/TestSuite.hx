@@ -28,6 +28,7 @@ import org.hamcrest.core.IsSameTest;
 import org.hamcrest.core.IsTest;
 import org.hamcrest.CustomMatcherTest;
 import org.hamcrest.CustomTypeSafeMatcherTest;
+import org.hamcrest.ExceptionTest;
 import org.hamcrest.MatcherAssertTest;
 import org.hamcrest.number.IsCloseToTest;
 import org.hamcrest.number.OrderingComparisonTest;
@@ -73,6 +74,7 @@ class TestSuite extends massive.munit.TestSuite
 		add(org.hamcrest.core.IsTest);
 		add(org.hamcrest.CustomMatcherTest);
 		add(org.hamcrest.CustomTypeSafeMatcherTest);
+		add(org.hamcrest.ExceptionTest);
 		add(org.hamcrest.MatcherAssertTest);
 		add(org.hamcrest.number.IsCloseToTest);
 		add(org.hamcrest.number.OrderingComparisonTest);
