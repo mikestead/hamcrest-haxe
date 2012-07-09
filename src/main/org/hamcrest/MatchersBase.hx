@@ -125,7 +125,7 @@ class MatchersBase
         return IsEqual.equalTo(operand);
     }
 
-	#if (php && haxe_209)
+	#if (php && haxe_210)
 	public function instanceOf<T>(type:Class<Dynamic>):Matcher<T>
     {
         return IsInstanceOf.instanceOf(type);
