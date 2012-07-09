@@ -41,13 +41,20 @@ class Is<T> extends BaseMatcher<T>
     	matcher.describeMismatch(item, mismatchDescription);
     }
 
-    public static function is<T>(value:Dynamic):Matcher<T>
-    {
-    	if (Std.is(value, Matcher))
-    		return new Is<T>(value);
-    	if (Std.is(value, Class))
-    		return is(IsInstanceOf.instanceOf(value));
-    	
-    	return is(IsEqual.equalTo(value));
-    }
+	public static function is<T>(value:Dynamic):Matcher<T>
+	{
+		if (Std.is(value, Matcher))
+			return new Is<T>(value);
+
+		if (Std.is(value, Class))
+		{
+			#if (php && haxe_209)
+			throw new Exception("PHP does not yet support the instanceOf matcher due to keyword name collision.");
+			#else
+			return is(IsInstanceOf.instanceOf(value));
+			#end
+		}
+
+		return is(IsEqual.equalTo(value));
+	}
 }
