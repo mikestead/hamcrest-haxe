@@ -48,7 +48,7 @@ class Is<T> extends BaseMatcher<T>
 
 		if (Std.is(value, Class))
 		{
-			#if (php && haxe_210)
+			#if (php && haxe_209)
 			throw new Exception("PHP does not yet support the instanceOf matcher due to keyword name collision.");
 			#else
 			return is(IsInstanceOf.instanceOf(value));
