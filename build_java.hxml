@@ -1,4 +1,4 @@
--cmd haxelib run mlib allClasses
+#-cmd haxelib run mlib allClasses
 
 # java
 
