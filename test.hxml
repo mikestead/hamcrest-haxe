@@ -2,9 +2,8 @@
 -main TestMain
 -lib munit
 -lib mcover
-#--macro massive.mcover.MCover.include('org.hamcrest', ['src/main'], null)
--cp src/main
--cp src/test
+-cp src
+-cp test
 -swf-version 9
 -swf build/as3_test.swf
 
@@ -14,9 +13,8 @@
 -main TestMain
 -lib munit
 -lib mcover
--cp src/main
--cp src/test
-#--macro massive.mcover.MCover.include('org.hamcrest', ['src/main'], null)
+-cp src
+-cp test
 -swf-version 8
 -swf build/as2_test.swf
 
@@ -26,9 +24,8 @@
 -main TestMain
 -lib munit
 -lib mcover
--cp src/main
--cp src/test
-#--macro massive.mcover.MCover.include('org.hamcrest', ['src/main'], null)
+-cp src
+-cp test
 -js build/js_test.js
 
 --next
@@ -37,9 +34,8 @@
 -main TestMain
 -lib munit
 -lib mcover
--cp src/main
--cp src/test
-#--macro massive.mcover.MCover.include('', ['src/main'], null)
+-cp src
+-cp test
 -neko build/neko_test.n
 
 --next
@@ -48,7 +44,6 @@
 -main TestMain
 -lib munit
 -lib mcover
--cp src/main
--cp src/test
-#--macro massive.mcover.MCover.include('', ['src/main'], null)
+-cp src
+-cp test
 -cpp build/cpp_test
