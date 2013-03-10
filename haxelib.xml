@@ -2,5 +2,5 @@
     <user name="mikestead"/>
     <tag v="cross"/>
     <description>Provides a library of matcher objects (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.</description>
-    <version name="1.0.0">Initial release. Ported appropriate code from Java version.</version>
+    <version name="1.1.0">Add support for Haxe 3.</version>
 </project>

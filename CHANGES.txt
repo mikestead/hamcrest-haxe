@@ -1,2 +1,5 @@
+v1.1.0 - 10.03.13
+- Add support for Haxe 3.0 RC 1
+
 v1.0.0 - 10.9.11
 - Initial release. Ported appropriate code from Java version found at http://code.google.com/p/hamcrest/.
