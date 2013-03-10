@@ -14,7 +14,7 @@ import org.hamcrest.core.IsEqual;
 
 import haxe.PosInfos;
 
-class IsHashContaining<V> extends TypeSafeMatcher<Hash<V>>
+class IsHashContaining<V> extends TypeSafeMatcher<StringMap<V>>
 {
     var keyMatcher:Matcher<String>;
     var valueMatcher:Matcher<V>;
@@ -26,7 +26,7 @@ class IsHashContaining<V> extends TypeSafeMatcher<Hash<V>>
         this.valueMatcher = valueMatcher;
     }
 
-    override function matchesSafely(hash:Hash<V>):Bool
+    override function matchesSafely(hash:StringMap<V>):Bool
     {
     	for (key in hash.keys())
     	{
@@ -38,15 +38,15 @@ class IsHashContaining<V> extends TypeSafeMatcher<Hash<V>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, Hash);
+    	return Std.is(value, StringMap);
     }
 
-    override function describeMismatchSafely(hash:Hash<V>, mismatchDescription:Description)
+    override function describeMismatchSafely(hash:StringMap<V>, mismatchDescription:Description)
     {
 		mismatchDescription.appendText("hash was ").appendValueList("[", ", ", "]", hashSetAsString(hash));
     }
     
-    function hashSetAsString(hash:Hash<V>):Iterable<Set<String, V>>
+    function hashSetAsString(hash:StringMap<V>):Iterable<Set<String, V>>
     {
     	var keys = hash.keys();
     	return {
@@ -73,20 +73,20 @@ class IsHashContaining<V> extends TypeSafeMatcher<Hash<V>>
                    .appendText("]");
     }
     
-    public static function hasEntry<V>(key:Dynamic, value:Dynamic):Matcher<Hash<V>>
+    public static function hasEntry<V>(key:Dynamic, value:Dynamic):Matcher<StringMap<V>>
     {    		
     	var keyMatcher = matcherForKey(key);
     	var valueMatcher = matcherForValue(value);
     	return new IsHashContaining<V>(keyMatcher, valueMatcher);
     }
     
-    public static function hasKey(key:Dynamic):Matcher<Hash<Dynamic>>
+    public static function hasKey(key:Dynamic):Matcher<StringMap<Dynamic>>
     {
     	var keyMatcher = matcherForKey(key);
     	return new IsHashContaining<Dynamic>(keyMatcher, IsAnything.anything());
     }
     
-    public static function hasValue<V>(value:Dynamic):Matcher<Hash<V>>
+    public static function hasValue<V>(value:Dynamic):Matcher<StringMap<V>>
     {
     	var valueMatcher = matcherForValue(value);
     	return new IsHashContaining<V>(cast IsAnything.anything(), valueMatcher);

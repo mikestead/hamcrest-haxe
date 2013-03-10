@@ -13,7 +13,7 @@ class IsHashContainingTest extends AbstractMatcherTest
 	@Test
     public function testMatchesMapContainingMatchingKeyAndValue()
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         map.set("a", 1);
         map.set("b", 2);
 
@@ -24,7 +24,7 @@ class IsHashContainingTest extends AbstractMatcherTest
     @Test
     public function shouldPrintMapKeyValueInMissmatch()
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         map.set("a", 1);
         assertMismatchDescription("hash was [<a=1>]", hasEntry("a", 2), map);    
     }

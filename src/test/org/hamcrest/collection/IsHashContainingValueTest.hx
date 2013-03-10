@@ -19,14 +19,14 @@ class IsHashContainingValueTest extends AbstractMatcherTest
 	@Test
     public function testDoesNotMatchEmptyMap()
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         assertMismatchDescription("hash was []", hasValue(1), map);
     }
     
 	@Test
     public function testMatchesSingletonMapContainingValue()
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         map.set("a", 1);
         
         assertMatches("Singleton hash", hasValue(1), map);
@@ -35,7 +35,7 @@ class IsHashContainingValueTest extends AbstractMatcherTest
 	@Test
     public function testMatchesMapContainingValue() 
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         map.set("a", 1);
         map.set("b", 2);
         map.set("c", 3);

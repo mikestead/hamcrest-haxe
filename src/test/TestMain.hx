@@ -6,7 +6,6 @@ import massive.munit.TestRunner;
 
 #if js
 import js.Lib;
-import js.Dom;
 #end
 
 /**
@@ -23,7 +22,7 @@ class TestMain
         suites.push(TestSuite);
 
         #if MCOVER
-            var client = new massive.mcover.munit.client.MCoverPrintClient();
+	        var client = new mcover.coverage.munit.client.MCoverPrintClient();
         #else
             var client = new RichPrintClient();
         #end
@@ -47,7 +46,7 @@ class TestMain
             #elseif js
                 js.Lib.eval("testResult(" + successful + ");");
             #elseif neko
-                neko.Sys.exit(0);
+                Sys.exit(0);
             #end
         }
         // if run from outside browser can get error which we can ignore

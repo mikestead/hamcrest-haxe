@@ -19,8 +19,12 @@ package org.hamcrest;
  * @see CoreMatchers
  * @see BaseMatcher
  */
- interface Matcher<T> implements SelfDescribing
- {
+#if haxe3
+interface Matcher<T> extends SelfDescribing
+#else
+interface Matcher<T> implements SelfDescribing
+#end
+{
     /**
      * Evaluates the matcher for argument <var>item</var>.
      * <p/>
@@ -34,7 +38,7 @@ package org.hamcrest;
      *
      * @see BaseMatcher
      */
-    function matches(item:Dynamic):Bool;
+	function matches(item:Dynamic):Bool;
     
     /**
      * Generate a description of why the matcher has not accepted the item.

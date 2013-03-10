@@ -41,3 +41,14 @@
 -cp src/test
 #--macro massive.mcover.MCover.include('', ['src/main'], null)
 -neko build/neko_test.n
+
+--next
+
+# cpp
+-main TestMain
+-lib munit
+-lib mcover
+-cp src/main
+-cp src/test
+#--macro massive.mcover.MCover.include('', ['src/main'], null)
+-cpp build/cpp_test

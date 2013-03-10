@@ -125,14 +125,14 @@ class MatchersBase
         return IsEqual.equalTo(operand);
     }
 
-	#if (php && haxe_210)
-	public function instanceOf<T>(type:Class<Dynamic>):Matcher<T>
+	#if (!php || (php && haxe_210))
+	public function instanceOf<T>(type:Dynamic):Matcher<T>
     {
         return IsInstanceOf.instanceOf(type);
     }
 	#end
 
-    public function any<T>(type:Class<T>):Matcher<T>
+    public function any<T>(type:Dynamic):Matcher<T>
     {
         return IsInstanceOf.any(type);
     }
@@ -310,17 +310,17 @@ class MatchersBase
     	return IsIterableWithSize.iterableWithSize(value);
     }
 
-    public function hasEntry<V>(key:Dynamic, value:Dynamic):Matcher<Hash<V>>
+    public function hasEntry<V>(key:Dynamic, value:Dynamic):Matcher<StringMap<V>>
     {
     	return IsHashContaining.hasEntry(key, value);
     }
 
-    public function hasKey(key:Dynamic):Matcher<Hash<Dynamic>>
+    public function hasKey(key:Dynamic):Matcher<StringMap<Dynamic>>
     {
     	return IsHashContaining.hasKey(key);
     }
 
-    public function hasValue<V>(value:Dynamic):Matcher<Hash<V>>
+    public function hasValue<V>(value:Dynamic):Matcher<StringMap<V>>
     {
     	return IsHashContaining.hasValue(value);
     }

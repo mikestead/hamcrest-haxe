@@ -12,7 +12,7 @@ class IsHashContainingKeyTest extends AbstractMatcherTest
 
     public function testMatchesSingletonMapContainingKey()
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         map.set("a", 1);
         
         assertMatches("Matches single key", hasKey("a"), map);
@@ -20,7 +20,7 @@ class IsHashContainingKeyTest extends AbstractMatcherTest
     
     public function testMatchesMapContainingKey()
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         map.set("a", 1);
         map.set("b", 2);
         map.set("c", 3);
@@ -36,12 +36,12 @@ class IsHashContainingKeyTest extends AbstractMatcherTest
     
     public function testDoesNotMatchEmptyMap()
     {
-        assertMismatchDescription("map was []", hasKey("Foo"), new Hash<Int>());
+        assertMismatchDescription("map was []", hasKey("Foo"), new StringMap<Int>());
     }
     
     public function testDoesNotMatchMapMissingKey() 
     {
-        var map = new Hash<Int>();
+        var map = new StringMap<Int>();
         map.set("a", 1);
         map.set("b", 2);
         map.set("c", 3);
