@@ -1,6 +1,6 @@
 <mlib bin="release">
 	<resources>
-		<resource type="src" path="src/main" />
+		<resource type="src" path="src" />
 		<resource type="license" path="resource/license-header.txt" />
 		<resource path="LICENSE.txt" dest="" />
 	</resources>
