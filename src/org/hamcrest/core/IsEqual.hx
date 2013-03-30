@@ -96,8 +96,13 @@ class IsEqual<T> extends BaseMatcher<T>
     {
         return switch(Type.typeof(value))
         {
+        #if haxe3
+            case TEnum(_): true;
+            case _: false;
+        #else
             case TEnum(e): true;
             default: false;
+        #end
         }
     }
 

@@ -34,6 +34,15 @@ class IsEqualTest extends AbstractMatcherTest
             equalTo(SampleInnerEnum(SampleString2("str"))));
 
         assertThat(SampleEmpty,                     not(equalTo(null)));
+        assertThat(null,                            not(equalTo(SampleStringAndInt("str", 10))));
+        assertThat(SampleStringAndInt("str", 10),   not(equalTo(SampleStringAndInt("str", 15))));
+    }
+
+    @Test
+    public function testCompareInnerEnums()
+    {
+        assertThat(SampleInnerEnum(SampleStringAndInt2("str", 10)),
+            not(equalTo(SampleInnerEnum(SampleStringAndInt2("str", 15)))));
     }
 
 	@Test
