@@ -41,8 +41,11 @@ class IsEqual<T> extends BaseMatcher<T>
             return valueTwo == null;
         else if (valueTwo != null && isArray(valueOne))
             return isArray(valueTwo) && areArraysEqual(cast valueOne, cast valueTwo);
+        else if (valueTwo != null && isEnum(valueOne))
+            return isEnum(valueTwo) && areEnumsEqual(valueOne, valueTwo);
         else
         {
+
         	try
         	{
 	        	var field = Reflect.field(valueOne, "equals");
@@ -79,9 +82,23 @@ class IsEqual<T> extends BaseMatcher<T>
         return true;
     }
 
+    static function areEnumsEqual(valueOne: Dynamic, valueTwo: Dynamic):Bool
+    {
+        return Type.enumEq(valueOne, valueTwo);
+    }
+
     static function isArray(value:Dynamic):Bool
     {
         return Std.is(value, Array);
+    }
+
+    static function isEnum(value: Dynamic):Bool
+    {
+        return switch(Type.typeof(value))
+        {
+            case TEnum(_): true;
+            case _: false;
+        }
     }
 
     /**

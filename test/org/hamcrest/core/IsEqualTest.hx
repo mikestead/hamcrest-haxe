@@ -3,6 +3,7 @@ package org.hamcrest.core;
 import org.hamcrest.AbstractMatcherTest;
 import org.hamcrest.Matcher;
 
+import org.hamcrest.core.SampleEnum;
 
 class IsEqualTest extends AbstractMatcherTest
 {
@@ -19,6 +20,20 @@ class IsEqualTest extends AbstractMatcherTest
 
         assertThat(1, equalTo(1));
         assertThat(1, not(equalTo(2)));
+    }
+
+    @Test
+    public function testCompareEnums()
+    {
+        assertThat(SampleEmpty,                     equalTo(SampleEmpty));
+        assertThat(SampleString("str"),             equalTo(SampleString("str")));
+        assertThat(SampleStringAndInt("str", 10),   equalTo(SampleStringAndInt("str", 10)));
+
+        assertThat(SampleInnerEnum(SampleEmpty2),   equalTo(SampleInnerEnum(SampleEmpty2)));
+        assertThat(SampleInnerEnum(SampleString2("str")),
+            equalTo(SampleInnerEnum(SampleString2("str"))));
+
+        assertThat(SampleEmpty,                     not(equalTo(null)));
     }
 
 	@Test
