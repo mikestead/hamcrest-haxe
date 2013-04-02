@@ -12,6 +12,8 @@ import org.hamcrest.Exception;
 import org.hamcrest.core.IsAnything;
 import org.hamcrest.core.IsEqual;
 
+import org.hamcrest.internal.StringMap;
+
 import haxe.PosInfos;
 
 class IsHashContaining<V> extends TypeSafeMatcher<StringMap<V>>

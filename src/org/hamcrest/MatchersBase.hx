@@ -34,7 +34,7 @@ import org.hamcrest.collection.IsIterableWithSize;
 import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.hamcrest.collection.IsHashContaining;
-
+import org.hamcrest.internal.StringMap;
 
 /**
  * Currently (Haxe 2.08, 10.9.11) it is not possible to import static methods to use in a class.
