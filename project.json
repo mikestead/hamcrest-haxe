@@ -1,0 +1,6 @@
+{
+	"name":"hamcrest-haxe",
+	"version":"1.2.1",
+	"id":"hamcrest",
+	"dependencies":{}
+}

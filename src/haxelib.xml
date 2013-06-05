@@ -1,6 +1,7 @@
-<project name="hamcrest" url="https://github.com/mikestead/hamcrest-haxe" license="BSD">
-    <user name="mikestead"/>
-    <tag v="cross"/>
-    <description>Provides a library of matcher objects (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.</description>
-    <version name="1.2.0">IsEqual now performs correct equality checks on Enums.</version>
+<project name="hamcrest" url="https://github.com/mikestead/hamcrest-haxe" license="MIT">
+	<user name="mikestead"/>
+	<description><![CDATA[Provides a library of matcher objects (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.]]></description>
+	<version name="1.2.1"><![CDATA[Add haxelib.json ready to release to new haxelib.]]></version>
+	<tag v="cross"/>
+	<tag v="unittest"/>
 </project>
