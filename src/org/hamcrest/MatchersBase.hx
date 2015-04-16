@@ -37,9 +37,7 @@ import org.hamcrest.collection.IsHashContaining;
 import org.hamcrest.internal.StringMap;
 
 /**
- * Currently (Haxe 2.08, 10.9.11) it is not possible to import static methods to use in a class.
- * There is a feature request open for this http://code.google.com/p/haxe/issues/detail?id=365
- * (please go and star/vote for it!) but until it's resolved you'll need to extend this class.
+ * @deprecated Use `org.hamcrest.Matchers` instead.
  */
 class MatchersBase
 {
