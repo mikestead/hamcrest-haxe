@@ -7,7 +7,7 @@ package org.hamcrest.collection;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.TypedefChecker;
+import org.hamcrest.internal.TypeIdentifier;
 
 /**
  * Tests if collection is empty.
@@ -31,7 +31,7 @@ class IsEmptyIterable<E> extends TypeSafeMatcher<Iterable<E>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return TypedefChecker.isIterable(value);
+    	return TypeIdentifier.isIterable(value);
     }
 
     override public function describeTo(description:Description):Void

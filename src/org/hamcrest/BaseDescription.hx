@@ -7,7 +7,7 @@ package org.hamcrest;
 import org.hamcrest.internal.SelfDescribingValueIterator;
 import org.hamcrest.Exception;
 
-using org.hamcrest.TypedefChecker;
+using org.hamcrest.internal.TypeIdentifier;
 
 /**
  * A {@link Description} that is stored as a string.

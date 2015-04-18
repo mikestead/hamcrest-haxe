@@ -13,9 +13,9 @@ using StringTools;
  */
 class StringEndsWith extends SubstringMatcher 
 {
-    public function new(substring:String)
+    public function new(suffix:String)
     {
-        super(substring);
+        super(suffix);
     }
 
     override function evalSubstringOf(s:String):Bool
@@ -28,8 +28,8 @@ class StringEndsWith extends SubstringMatcher
         return "ending with";
     }
 
-    public static function endsWith(substring:String):Matcher<String>
+    public static function endsWith(suffix:String):Matcher<String>
     {
-        return new StringEndsWith(substring);
+        return new StringEndsWith(suffix);
     }
 }

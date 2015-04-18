@@ -13,9 +13,9 @@ using StringTools;
  */
 class StringStartsWith extends SubstringMatcher 
 {
-    public function new(substring:String)
+    public function new(prefix:String)
     {
-        super(substring);
+        super(prefix);
     }
     
     override function evalSubstringOf(s:String):Bool
@@ -28,8 +28,8 @@ class StringStartsWith extends SubstringMatcher
         return "starting with";
     }
 
-    public static function startsWith(substring:String):Matcher<String>
+    public static function startsWith(prefix:String):Matcher<String>
     {
-        return new StringStartsWith(substring);
+        return new StringStartsWith(prefix);
     }
 }

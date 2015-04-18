@@ -10,16 +10,25 @@ class Build extends mtask.core.BuildBase
 	@target function haxelib(t:HaxeLib)
 	{
 		t.url = "https://github.com/mikestead/hamcrest-haxe";
-		t.description = "Provides a library of matcher objects (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.";
-		t.versionDescription = "Add haxelib.json ready to release to new haxelib.";
+		t.description = "A library of Matchers (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.";
+		t.versionDescription = "Add Matchers and CoreMatchers. Improve api of MatcherAssert";
 		t.username = "mikestead";
+		t.license = HaxeLibLicense.BSD;
 		t.addTag("cross");
+		t.addTag("unit");
 		t.addTag("unittest");
+		t.addTag("test");
+		t.addTag("matchers");
 
 		t.beforeCompile = function(path:String)
 		{
 			cp("LICENSE.txt", path);
 			cp("src/*", path);
 		}
+	}
+
+	@task function test()
+	{
+		mtask.tool.HaxeLib.run("munit", ["test", "-coverage"]);
 	}
 }

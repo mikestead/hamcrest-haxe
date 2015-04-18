@@ -47,14 +47,17 @@ class Is<T> extends BaseMatcher<T>
 			return new Is<T>(value);
 
 		if (Std.is(value, Class))
-		{
-			#if (php && haxe_209)
-			throw new Exception("PHP does not yet support the instanceOf matcher due to keyword name collision.");
-			#else
-			return is(IsInstanceOf.instanceOf(value));
-			#end
-		}
+			return isA(value);
 
 		return is(IsEqual.equalTo(value));
+	}
+
+	public static function isA<T>(type:Class<Dynamic>):Matcher<T>
+	{
+		#if (php && haxe_209)
+		throw new Exception("PHP does not yet support the instanceOf matcher due to keyword name collision.");
+		#else
+		return is(IsInstanceOf.instanceOf(type));
+		#end
 	}
 }

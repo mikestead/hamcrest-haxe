@@ -9,7 +9,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.hamcrest.Exception;
 import org.hamcrest.core.IsEqual;
-import org.hamcrest.TypedefChecker;
+import org.hamcrest.internal.TypeIdentifier;
 import org.hamcrest.internal.VarArgMatchers;
 
 class IsIterableContainingInAnyOrder<T> extends TypeSafeDiagnosingMatcher<Iterable<T>>
@@ -37,7 +37,7 @@ class IsIterableContainingInAnyOrder<T> extends TypeSafeDiagnosingMatcher<Iterab
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return TypedefChecker.isIterable(value);
+    	return TypeIdentifier.isIterable(value);
     }
     
     override function describeTo(description:Description)

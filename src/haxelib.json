@@ -1,10 +1,17 @@
 {
 	"name": "hamcrest",
 	"license": "MIT",
-	"tags": ["cross","unittest"],
+	"tags": [
+	"cross",
+	"unittest",
+	"test",
+	"matchers"
+],
 	"description": "Provides a library of matcher objects (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.",
-	"contributors": ["mikestead"],
-	"releasenote": "Add haxelib.json ready to release to new haxelib.",
+	"contributors": [
+	"mikestead"
+],
+	"releasenote": "Add Matchers and CoreMatchers. Improve api of MatcherAssert",
 	"version": "1.2.1",
 	"url": "https://github.com/mikestead/hamcrest-haxe",
 	"dependencies": 

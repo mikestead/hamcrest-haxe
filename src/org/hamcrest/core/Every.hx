@@ -4,6 +4,7 @@
 
 package org.hamcrest.core;
 
+import org.hamcrest.internal.TypeIdentifier;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
@@ -44,7 +45,7 @@ class Every<T> extends TypeSafeDiagnosingMatcher<Iterable<T>>
 	
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return TypedefChecker.isIterable(value);
+    	return TypeIdentifier.isIterable(value);
     }
 	
 	/**

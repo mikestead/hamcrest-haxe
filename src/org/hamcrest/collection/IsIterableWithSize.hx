@@ -8,7 +8,7 @@ import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 import org.hamcrest.Exception;
 import org.hamcrest.core.IsEqual;
-import org.hamcrest.TypedefChecker;
+import org.hamcrest.internal.TypeIdentifier;
 
 class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
 {
@@ -27,7 +27,7 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return TypedefChecker.isIterable(value);
+    	return TypeIdentifier.isIterable(value);
     }
     
     /**

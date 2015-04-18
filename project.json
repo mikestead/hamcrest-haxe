@@ -1,6 +1,15 @@
 {
-	"name":"hamcrest-haxe",
-	"version":"1.2.1",
-	"id":"hamcrest",
-	"dependencies":{}
+	"project":
+	{
+		"name":"hamcrest-haxe",
+		"id":"hamcrest",
+		"description": "Hamcrest matchers for Haxe.",
+		"url":"https://github.com/mikestead/hamcrest-haxe",
+		"version":"1.2.1",
+		"devDependencies":
+		{
+			"mtask": "3.x"
+		},
+		"dependencies": {}
+	}
 }

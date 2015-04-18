@@ -1,8 +1,0 @@
--cmd haxelib run mlib allClasses
-
-# java
-
--main org.hamcrest.AllClasses
--cp src/main
--v
--java build/java_hamcrest

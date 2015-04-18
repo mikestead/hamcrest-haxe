@@ -44,9 +44,16 @@ class MatchersBase
 	private function new()
 	{}
 
-	public function assertThat<T>(valueOne:Dynamic, ?valueTwo:Dynamic, ?matcher:Matcher<T>, ?info:PosInfos)
+	/**
+		Assert that a value is true, or that its Matcher successfully matches the value.
+		
+		@param actual If no Matcher is defined then must be a boolean, otherwise can be any value.
+		@param matcher Matcher used to validate `actual`.
+		@param reason Optional description outlining reasoning for match
+	**/
+	public function assertThat<T>(actual:Dynamic, ?matcher:Matcher<T>, ?reason:String, ?info:PosInfos)
 	{
-		MatcherAssert.assertThat(valueOne, valueTwo, matcher, info);
+		return MatcherAssert.assertThat(actual, matcher, reason, info);
 	}
 
     public function allOf<T>(first:Dynamic,
@@ -152,7 +159,7 @@ class MatchersBase
 
     public function sameInstance<T>(object:T):Matcher<T>
     {
-        return IsSame.sameInstance(object);
+        return IsSame.theInstance(object);
     }
 
     public function containsString(substring:String):Matcher<String>

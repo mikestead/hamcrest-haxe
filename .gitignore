@@ -1,5 +1,9 @@
-/report/
-/src/main/org/hamcrest/AllClasses.hx
-
-/bin/
-/.temp/
+/bin
+/lib
+/.temp
+/.idea
+*.iml
+Thumbs.db
+.DS_Store
+TestSuite.hx
+.mcover

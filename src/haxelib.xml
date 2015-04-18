@@ -1,7 +1,9 @@
 <project name="hamcrest" url="https://github.com/mikestead/hamcrest-haxe" license="MIT">
 	<user name="mikestead"/>
 	<description><![CDATA[Provides a library of matcher objects (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.]]></description>
-	<version name="1.2.1"><![CDATA[Add haxelib.json ready to release to new haxelib.]]></version>
+	<version name="1.2.1"><![CDATA[Add Matchers and CoreMatchers. Improve api of MatcherAssert]]></version>
 	<tag v="cross"/>
 	<tag v="unittest"/>
+	<tag v="test"/>
+	<tag v="matchers"/>
 </project>

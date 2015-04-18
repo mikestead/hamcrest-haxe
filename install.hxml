@@ -1,2 +1,0 @@
--cmd haxelib run mlib install
-#-cmd haxelib submit release/hamcrest.zip

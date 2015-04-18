@@ -4,12 +4,12 @@
 
 package org.hamcrest.collection;
 
+import org.hamcrest.internal.TypeIdentifier;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.Exception;
-import org.hamcrest.TypedefChecker;
 import org.hamcrest.internal.VarArgMatchers;
 
 class IsIterableContainingInOrder<E> extends TypeSafeDiagnosingMatcher<Iterable<E>>
@@ -36,7 +36,7 @@ class IsIterableContainingInOrder<E> extends TypeSafeDiagnosingMatcher<Iterable<
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return TypedefChecker.isIterable(value);
+    	return TypeIdentifier.isIterable(value);
     }
 
     override public function describeTo(description:Description)

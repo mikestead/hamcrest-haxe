@@ -39,7 +39,7 @@ class IsSame<T> extends BaseMatcher<T>
      * @param object The predicate evaluates to true only when the argument is
      *               this object.
      */
-    public static function sameInstance<T>(object:T):Matcher<T>
+    public static function theInstance<T>(object:T):Matcher<T>
     {
         return new IsSame<T>(object);
     }

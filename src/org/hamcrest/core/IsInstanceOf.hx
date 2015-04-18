@@ -17,7 +17,7 @@ import org.hamcrest.Matcher;
  */
 class IsInstanceOf extends DiagnosingMatcher<Dynamic>
 {
-    var expectedClass:Dynamic;
+    var expectedClass:Class<Dynamic>;
 
     /**
      * Creates a new instance of IsInstanceOf
@@ -25,7 +25,7 @@ class IsInstanceOf extends DiagnosingMatcher<Dynamic>
      * @param expectedClass The predicate evaluates to true for instances of this class
      *                 or one of its subclasses.
      */
-    public function new(expectedClass:Dynamic)
+    public function new(expectedClass:Class<Dynamic>)
     {
     	super();
         this.expectedClass = expectedClass;
@@ -61,7 +61,7 @@ class IsInstanceOf extends DiagnosingMatcher<Dynamic>
      * the signature of the method that sets it up, for example in
      * <code>assertThat(anObject, instanceOf(Thing));</code>
      */
-    public static function instanceOf<T>(type:Dynamic):Matcher<T>
+    public static function instanceOf<T>(type:Class<Dynamic>):Matcher<T>
     {
         return cast new IsInstanceOf(type);
     }
@@ -71,7 +71,7 @@ class IsInstanceOf extends DiagnosingMatcher<Dynamic>
      * Use this version to make generics conform, for example in 
      * the clause <code>with(any(Thing))</code> 
      */
-    public static function any<T>(type:Dynamic):Matcher<T>
+    public static function any<T>(type:Class<Dynamic>):Matcher<T>
     {
         return cast new IsInstanceOf(type);
     }

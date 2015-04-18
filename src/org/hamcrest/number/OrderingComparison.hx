@@ -1,14 +1,8 @@
-/****
-* Copyright 2011 hamcrest.org. See LICENSE.txt
-****/
-
-/*  Copyright (c) 2000-2009 hamcrest.org
- */
 package org.hamcrest.number;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.internal.TypeIdentifier;
 import org.hamcrest.Exception;
 
 class OrderingComparison extends TypeSafeMatcher<Dynamic>
@@ -17,10 +11,11 @@ class OrderingComparison extends TypeSafeMatcher<Dynamic>
     static var GREATER_THAN:Int = 1;
     static var EQUAL:Int = 0;
 
-    static var comparisonDescriptions:Array<String> = [
-            "less than",
-            "equal to",
-            "greater than"
+    static var comparisonDescriptions:Array<String> =
+    [
+		"less than",
+		"equal to",
+		"greater than"
     ];
     
     var expected:Dynamic;
@@ -46,29 +41,22 @@ class OrderingComparison extends TypeSafeMatcher<Dynamic>
     	var value = 0;
     	if (Std.is(actual, Float) || Std.is(actual, Int) || Std.is(actual, String))
     	{
-    		if (actual < expected)
-    			value = -1;
-    		else if (actual > expected)
-    			value = 1;
+	        value = Reflect.compare(actual, expected);
     	}
+	    else if (Std.is(actual, Date) && Std.is(expected, Date))
+	    {
+	        value = Reflect.compare(cast(actual, Date).getTime(), cast(expected, Date).getTime());
+	    }
     	else
     	{
-			var field = Reflect.field(value, "__compare");
+			var field = Reflect.field(actual, "compareTo");
 			if (field != null && Reflect.isFunction(field))
 			{
-				value = Reflect.compare(actual, expected);
+				value = Reflect.callMethod(actual, field, [expected]);
 			}
 			else
 			{
-				field = Reflect.field(value, "compareTo");
-				if (field != null && Reflect.isFunction(field))
-				{
-					value = Reflect.callMethod(value, field, [expected]);
-				}
-				else
-				{
-					throw new IllegalArgumentException("Argument is not of a comparable type.");
-				}
+				throw new IllegalArgumentException("Argument is not of a comparable type.");
 			}
 			value = signum(value);
 		}
@@ -108,7 +96,7 @@ class OrderingComparison extends TypeSafeMatcher<Dynamic>
 
 	override function isExpectedType(value:Dynamic):Bool
     {
-    	return TypedefChecker.isComparable(value);
+    	return TypeIdentifier.isComparable(value);
     }
     
     /**

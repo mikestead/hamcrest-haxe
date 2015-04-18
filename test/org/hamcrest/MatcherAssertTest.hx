@@ -19,7 +19,7 @@ class MatcherAssertTest
         
         try
         {
-            MatcherAssert.assertThat("identifier", actual, IsEqual.equalTo(expected));
+            MatcherAssert.assertThat(actual, IsEqual.equalTo(expected), "identifier");
         }
         catch (e:AssertionException) 
         {
@@ -54,11 +54,11 @@ class MatcherAssertTest
     @Test
     public function testCanTestBooleanDirectly()
     {
-        MatcherAssert.assertThat("success reason message", true);
+        MatcherAssert.assertThat(true, null, "success reason message");
         
         try
         {
-            MatcherAssert.assertThat("failing reason message", false);
+            MatcherAssert.assertThat(false, null, "failing reason message");
         }
         catch (e:AssertionException)
         {

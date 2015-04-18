@@ -8,7 +8,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.hamcrest.Exception;
-import org.hamcrest.TypedefChecker;
+import org.hamcrest.internal.TypeIdentifier;
 
 class IsCollectionContaining<T> extends TypeSafeDiagnosingMatcher<Iterable<T>> 
 {
@@ -48,7 +48,7 @@ class IsCollectionContaining<T> extends TypeSafeDiagnosingMatcher<Iterable<T>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return TypedefChecker.isIterable(value);
+    	return TypeIdentifier.isIterable(value);
     }
     
     public static function hasItem<T>(value:Dynamic):Matcher<Iterable<T>>
