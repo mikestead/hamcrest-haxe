@@ -7,8 +7,6 @@ package org.hamcrest.collection;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
-import org.hamcrest.Exception;
-import org.hamcrest.core.IsEqual;
 import org.hamcrest.internal.TypeIdentifier;
 import org.hamcrest.internal.VarArgMatchers;
 

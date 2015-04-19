@@ -7,7 +7,7 @@ class IsSameTest extends AbstractMatcherTest
 {
     override function createMatcher():Matcher<Dynamic>
     {
-        return sameInstance("irrelevant");
+        return theInstance("irrelevant");
     }
 
 	@Test
@@ -15,19 +15,19 @@ class IsSameTest extends AbstractMatcherTest
         var o1 = {};
         var o2 = {};
 
-        assertThat(o1, sameInstance(o1));
-        assertThat(o2, not(sameInstance(o1)));
+        assertThat(o1, theInstance(o1));
+        assertThat(o2, not(theInstance(o1)));
     }
 
 	@Test
     public function testReturnsReadableDescriptionFromToString() 
     {
-        assertDescription("sameInstance(\"ARG\")", sameInstance("ARG"));
+        assertDescription("sameInstance(\"ARG\")", theInstance("ARG"));
     }
 
 	@Test
     public function testReturnsReadableDescriptionFromToStringWhenInitialisedWithNull()
     {
-        assertDescription("sameInstance(null)", sameInstance(null));
+        assertDescription("sameInstance(null)", theInstance(null));
     }
 }

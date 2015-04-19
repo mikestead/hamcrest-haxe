@@ -9,55 +9,55 @@ class IsIterableContainingInOrderTest extends AbstractMatcherTest
 {
     override function createMatcher():Matcher<Dynamic>
     {
-        return contains(1, 2);
+        return containsInOrder(1, 2);
     }
 
 	@Test
     public function testMatchingSingleItemIterable()
     {
-        assertMatches("Single item iterable", contains(1), [1]);
+        assertMatches("Single item iterable", containsInOrder(1), [1]);
     }
 
 	@Test
     public function testMatchingMultipleItemIterable()
     {
-        assertMatches("Multiple item iterable", contains(1, 2, 3), [1, 2, 3]);
+        assertMatches("Multiple item iterable", containsInOrder(1, 2, 3), [1, 2, 3]);
     }
 
 	@Test
     public function testDoesNotMatchWithMoreElementsThanExpected()
     {
-        assertMismatchDescription("Not matched: <4>", contains(1, 2, 3), [1, 2, 3, 4]);
+        assertMismatchDescription("Not matched: <4>", containsInOrder(1, 2, 3), [1, 2, 3, 4]);
     }
 
 	@Test
     public function testDoesNotMatchWithFewerElementsThanExpected()
     {
-        assertMismatchDescription("No item matched: value with <3>", contains(value(1), value(2), value(3)), [make(1), make(2)]);
+        assertMismatchDescription("No item matched: value with <3>", containsInOrder(value(1), value(2), value(3)), [make(1), make(2)]);
     }
 
 	@Test
     public function testDoesNotMatchIfSingleItemMismatches()
     {
-        assertMismatchDescription("item 0: value was <3>", contains(value(4)), [make(3)]);
+        assertMismatchDescription("item 0: value was <3>", containsInOrder(value(4)), [make(3)]);
     }
 
 	@Test
     public function testDoesNotMatchIfOneOfMultipleItemsMismatch()
     {
-        assertMismatchDescription("item 2: value was <4>", contains(value(1), value(2), value(3)), [make(1), make(2), make(4)]);
+        assertMismatchDescription("item 2: value was <4>", containsInOrder(value(1), value(2), value(3)), [make(1), make(2), make(4)]);
     }
 
 	@Test
     public function testDoesNotMatchEmptyIterable()
     {
-        assertMismatchDescription("No item matched: value with <4>", contains(value(4)), new Array<WithValue>());
+        assertMismatchDescription("No item matched: value with <4>", containsInOrder(value(4)), new Array<WithValue>());
     }
 
 	@Test
     public function testHasAReadableDescription()
     {
-        assertDescription("iterable containing [<1>, <2>]", contains(1, 2));
+        assertDescription("iterable containing [<1>, <2>]", containsInOrder(1, 2));
     }
 
     public static function make(value:Int):WithValue

@@ -7,59 +7,52 @@ package org.hamcrest.collection;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.Exception;
-
 import org.hamcrest.core.IsAnything;
 import org.hamcrest.core.IsEqual;
 
-import org.hamcrest.internal.StringMap;
 
-import haxe.PosInfos;
-
-class IsHashContaining<V> extends TypeSafeMatcher<StringMap<V>>
+class IsHashContaining<K, V> extends TypeSafeMatcher<Map<K, V>>
 {
-    var keyMatcher:Matcher<String>;
+    var keyMatcher:Matcher<K>;
     var valueMatcher:Matcher<V>;
 
-    public function new(keyMatcher:Matcher<String>, valueMatcher:Matcher<V>)
+    public function new(keyMatcher:Matcher<K>, valueMatcher:Matcher<V>)
     {
     	super();
         this.keyMatcher = keyMatcher;
         this.valueMatcher = valueMatcher;
     }
 
-    override function matchesSafely(hash:StringMap<V>):Bool
+    override function matchesSafely(map:Map<K, V>):Bool
     {
-    	for (key in hash.keys())
-    	{
-    		if (keyMatcher.matches(key) && valueMatcher.matches(hash.get(key)))
+    	for (key in map.keys())
+    		if (keyMatcher.matches(key) && valueMatcher.matches(map.get(key)))
     			return true;
-    	}
         return false;
     }
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, StringMap);
+    	return Std.is(value, Map.IMap);
     }
 
-    override function describeMismatchSafely(hash:StringMap<V>, mismatchDescription:Description)
+    override function describeMismatchSafely(hash:Map<K, V>, mismatchDescription:Description)
     {
 		mismatchDescription.appendText("hash was ").appendValueList("[", ", ", "]", hashSetAsString(hash));
     }
     
-    function hashSetAsString(hash:StringMap<V>):Iterable<Set<String, V>>
+    function hashSetAsString(hash:Map<K, V>):Iterable<Entry<K, V>>
     {
     	var keys = hash.keys();
     	return {
-    		iterator:function():Iterator<Set<String, V>> {
+    		iterator:function():Iterator<Entry<K, V>> {
     			return {
     				hasNext:function():Bool {
     					return keys.hasNext();    				
     				},
-    				next:function():Set<String, V> {
+    				next:function():Entry<K, V> {
     					var key = keys.next();
-    					return new Set<String, V>(key, hash.get(key));
+    					return new Entry<K, V>(key, hash.get(key));
     				}
     			}	
     		}
@@ -75,45 +68,32 @@ class IsHashContaining<V> extends TypeSafeMatcher<StringMap<V>>
                    .appendText("]");
     }
     
-    public static function hasEntry<V>(key:Dynamic, value:Dynamic):Matcher<StringMap<V>>
+    public static function hasEntry<K, V>(key:K, value:V):Matcher<Map<K, V>>
     {    		
-    	var keyMatcher = matcherForKey(key);
-    	var valueMatcher = matcherForValue(value);
-    	return new IsHashContaining<V>(keyMatcher, valueMatcher);
+    	var keyMatcher = getMatcher(key);
+    	var valueMatcher = getMatcher(value);
+    	return new IsHashContaining<K, V>(keyMatcher, valueMatcher);
     }
     
-    public static function hasKey(key:Dynamic):Matcher<StringMap<Dynamic>>
+    public static function hasKey<K, V>(key:K):Matcher<Map<K, V>>
     {
-    	var keyMatcher = matcherForKey(key);
-    	return new IsHashContaining<Dynamic>(keyMatcher, IsAnything.anything());
+    	var keyMatcher = getMatcher(key);
+    	return new IsHashContaining<K, V>(keyMatcher, IsAnything.anything());
     }
     
-    public static function hasValue<V>(value:Dynamic):Matcher<StringMap<V>>
+    public static function hasValue<K, V>(value:V):Matcher<Map<K, V>>
     {
-    	var valueMatcher = matcherForValue(value);
-    	return new IsHashContaining<V>(cast IsAnything.anything(), valueMatcher);
+    	var valueMatcher = getMatcher(value);
+    	return new IsHashContaining<K, V>(cast IsAnything.anything(), valueMatcher);
     }
     
-    static function matcherForKey(key:Dynamic, ?info:PosInfos):Matcher<String>
-    {
-		var keyMatcher:Matcher<String>;
-    	if (Std.is(key, Matcher))
-    		keyMatcher = key;
-    	else if (Std.is(key, String))
-    		keyMatcher = IsEqual.equalTo(key);
-    	else
-    		throw new IllegalArgumentException("Argument 'key' must be of type String or Matcher<String> [" + key + "]", null, info);
-
-    	return keyMatcher;
-    }
-    
-    static function matcherForValue<V>(value:Dynamic):Matcher<V>
+    static function getMatcher<T>(value:Dynamic):Matcher<T>
     {    	
-    	return (Std.is(value, Matcher)) ? value : IsEqual.equalTo(value);
+    	return Std.is(value, Matcher) ? value : IsEqual.equalTo(value);
     }
 }
 
-class Set<K, V>
+private class Entry<K, V>
 {
 	var key:K;
 	var value:V;

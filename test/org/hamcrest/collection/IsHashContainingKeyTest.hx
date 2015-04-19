@@ -2,7 +2,6 @@ package org.hamcrest.collection;
 
 import org.hamcrest.AbstractMatcherTest;
 import org.hamcrest.Matcher;
-import org.hamcrest.internal.StringMap;
 
 class IsHashContainingKeyTest extends AbstractMatcherTest
 {
@@ -13,15 +12,21 @@ class IsHashContainingKeyTest extends AbstractMatcherTest
 
     public function testMatchesSingletonMapContainingKey()
     {
-        var map = new StringMap<Int>();
+        var map = new Map<String, Int>();
         map.set("a", 1);
-        
         assertMatches("Matches single key", hasKey("a"), map);
+    }
+	
+    public function testMatchesSingletonMapContainingIntKey()
+    {
+        var map = new Map<Int, String>();
+        map.set(1, "a");
+        assertMatches("Matches single int key", hasKey(1), map);
     }
     
     public function testMatchesMapContainingKey()
     {
-        var map = new StringMap<Int>();
+        var map = new Map<String, Int>();
         map.set("a", 1);
         map.set("b", 2);
         map.set("c", 3);
@@ -37,12 +42,12 @@ class IsHashContainingKeyTest extends AbstractMatcherTest
     
     public function testDoesNotMatchEmptyMap()
     {
-        assertMismatchDescription("map was []", hasKey("Foo"), new StringMap<Int>());
+        assertMismatchDescription("map was []", hasKey("Foo"), new Map<String, Int>());
     }
     
     public function testDoesNotMatchMapMissingKey() 
     {
-        var map = new StringMap<Int>();
+        var map = new Map<String, Int>();
         map.set("a", 1);
         map.set("b", 2);
         map.set("c", 3);

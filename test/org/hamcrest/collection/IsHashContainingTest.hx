@@ -2,7 +2,6 @@ package org.hamcrest.collection;
 
 import org.hamcrest.AbstractMatcherTest;
 import org.hamcrest.Matcher;
-import org.hamcrest.internal.StringMap;
 
 class IsHashContainingTest extends AbstractMatcherTest
 {
@@ -14,18 +13,29 @@ class IsHashContainingTest extends AbstractMatcherTest
 	@Test
     public function testMatchesMapContainingMatchingKeyAndValue()
     {
-        var map = new StringMap<Int>();
+        var map = new Map<String, Int>();
         map.set("a", 1);
         map.set("b", 2);
 
         assertMatches("matcherA", hasEntry("a", 1), map);
         assertMatches("matcherB", hasEntry(equalTo("b"), equalTo(2)), map);
     }
-    
+	
+	@Test
+    public function testMatchesMapContainingMatchingIntKeyAndValue()
+    {
+        var map = new Map<Int, String>();
+        map.set(1, "a");
+        map.set(2, "b");
+
+        assertMatches("matcherA", hasEntry(1, "a"), map);
+        assertMatches("matcherB", hasEntry(equalTo(2), equalTo("b")), map);
+    }
+	
     @Test
     public function shouldPrintMapKeyValueInMissmatch()
     {
-        var map = new StringMap<Int>();
+        var map = new Map<String, Int>();
         map.set("a", 1);
         assertMismatchDescription("hash was [<a=1>]", hasEntry("a", 2), map);    
     }

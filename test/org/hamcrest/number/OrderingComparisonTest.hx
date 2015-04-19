@@ -41,6 +41,9 @@ class OrderingComparisonTest extends AbstractMatcherTest
 		assertThat("cc", greaterThan("bb"));
 		assertThat(0, not(greaterThan(1)));
 		assertThat(dateOne, greaterThan(dateTwo));
+		assertThat(dateOne.getTime(), greaterThan(dateTwo));
+		assertThat(dateOne, greaterThan(dateTwo.getTime()));
+		assertThat(dateOne, greaterThan(new ComparatorEg(dateTwo.getTime())));
 		assertThat(new ComparatorEg(3), greaterThan(new ComparatorEg(2)));
 	}
 
@@ -54,9 +57,13 @@ class OrderingComparisonTest extends AbstractMatcherTest
 		assertThat(2.3, lessThan(4.5));
 		assertThat("bb", lessThan("cc"));
 		assertThat(dateOne, lessThan(dateTwo));
+		assertThat(dateOne.getTime(), lessThan(dateTwo));
+		assertThat(dateOne, lessThan(dateTwo.getTime()));
+		assertThat(dateOne, lessThan(new ComparatorEg(dateTwo.getTime())));
+		assertThat(1, lessThan(new ComparatorEg(2)));
 		assertThat(new ComparatorEg(1), lessThan(new ComparatorEg(2)));
 	}
-
+	
 	@Test
 	public function testComparesObjectsForEquality()
 	{
@@ -66,33 +73,73 @@ class OrderingComparisonTest extends AbstractMatcherTest
 		assertThat(3.3, comparesEqualTo(3.3));
 		assertThat("aa", comparesEqualTo("aa"));
 		assertThat(dateOne, comparesEqualTo(dateTwo));
+		assertThat(dateOne.getTime(), comparesEqualTo(dateTwo));
+		assertThat(dateOne, comparesEqualTo(dateTwo.getTime()));
+		assertThat(dateOne, comparesEqualTo(new ComparatorEg(dateTwo.getTime())));
+		assertThat(1, comparesEqualTo(new ComparatorEg(1)));
 		assertThat(new ComparatorEg(1), comparesEqualTo(new ComparatorEg(1)));
 	}
 
 	@Test
-	public function testAllowsForInclusiveComparisons()
+	public function testAllowsForLessThanInclusiveComparisons()
 	{
+		var dateOne = Date.fromTime(DATE);
+		var dateTwo = Date.fromTime(DATE + 1000);
+
 		assertThat(1, lessThanOrEqualTo(1), "less");
+		assertThat(1, lessThanOrEqualTo(2), "less");
+		
+		assertThat("aa", lessThanOrEqualTo("aa"), "less");
+		assertThat("aa", lessThanOrEqualTo("bb"), "less");
+
+		assertThat(DATE, lessThanOrEqualTo(DATE), "less");
+		assertThat(dateOne, lessThanOrEqualTo(dateTwo), "less");
+		assertThat(dateOne.getTime(), lessThanOrEqualTo(dateTwo), "less");
+		
+		assertThat(dateOne, lessThanOrEqualTo(dateTwo.getTime()), "less");
+		assertThat(dateOne, lessThanOrEqualTo(new ComparatorEg(dateTwo.getTime())), "less");
+	}
+	
+	@Test
+	public function testAllowsForGreaterThanInclusiveComparisons()
+	{
+		var dateOne = Date.fromTime(DATE + 1000);
+		var dateTwo = Date.fromTime(DATE);
+
 		assertThat(1, greaterThanOrEqualTo(1), "greater");
+		assertThat(2, greaterThanOrEqualTo(1), "greater");
+
+		assertThat("aa", greaterThanOrEqualTo("aa"), "greater");
+		assertThat("bb", greaterThanOrEqualTo("aa"), "greater");
+
+		assertThat(DATE, greaterThanOrEqualTo(DATE), "greater");
+		assertThat(dateOne, greaterThanOrEqualTo(dateTwo), "greater");
+		assertThat(dateOne.getTime(), greaterThanOrEqualTo(dateTwo), "greater");
+
+		assertThat(dateOne, greaterThanOrEqualTo(dateTwo.getTime()), "greater");
+		assertThat(dateOne, greaterThanOrEqualTo(new ComparatorEg(dateTwo.getTime())), "greater");
 	}
 }
 
 private class ComparatorEg
 {
-	public var value:Int;
+	public var value:Float;
 
-	public function new(value:Int)
+	public function new(value:Float)
 	{
 		this.value = value;
 	}
 
 	public function compareTo(data:Dynamic):Int
 	{
-		var expected = -1;
+		var expected:Float = -1;
 		if (Std.is(data, ComparatorEg))
 			expected = data.value;
 		else if (Std.is(data, Int) || Std.is(data, Float))
 			expected = data;
+		else if (Std.is(data, Date))
+			expected = cast(data, Date).getTime();
+		
 		return Reflect.compare(value, expected);
 	}
 }

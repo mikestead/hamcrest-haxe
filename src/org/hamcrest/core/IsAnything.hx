@@ -39,8 +39,8 @@ class IsAnything<T> extends BaseMatcher<T>
 	 *
 	 * @param description A meaningful string used when describing itself.
      */
-    public static function anything(?description:String):Matcher<Dynamic>
+    public static function anything<T>(?description:String):Matcher<T>
     {
-        return new IsAnything<Dynamic>(description);
+        return new IsAnything<T>(description);
     }
 }

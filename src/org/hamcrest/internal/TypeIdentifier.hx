@@ -4,6 +4,7 @@
 
 package org.hamcrest.internal;
 
+import Type.ValueType;
 class TypeIdentifier
 {
 	private function new()
@@ -31,19 +32,38 @@ class TypeIdentifier
 		return false;
 	}
 	
+	public static function isNumber(value:Dynamic)
+	{
+		return switch (Type.typeof(value))
+		{
+			case ValueType.TFloat, ValueType.TInt: true;
+			case _: false;
+		}
+	}
+	
+	public static function isComparablePrimitive(value:Dynamic):Bool
+	{
+		return (isNumber(value) || Std.is(value, String));
+	}
+	
+	public static function hasCompareToFunction(value:Dynamic):Bool
+	{
+		var field = Reflect.field(value, "compareTo");
+		return (field != null && Reflect.isFunction(field));
+	}
+	
 	public static function isComparable(value:Dynamic):Bool
 	{
 		if (value == null)
 			return false;
 			
-		if (Std.is(value, Float) || Std.is(value, Int) || Std.is(value, String))
+		if (isComparablePrimitive(value))
 			return true;
 		
 		if (Std.is(value, Date)) // assumes we'll be comparing date.getTime()
 			return true;
 		
-		var field = Reflect.field(value, "compareTo");
-		if (Reflect.isFunction(field))
+		if (hasCompareToFunction(value))
 			return true;
 		
 		return false;

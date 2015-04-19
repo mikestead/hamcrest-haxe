@@ -2,6 +2,7 @@ package org.hamcrest.core;
 
 import org.hamcrest.AbstractMatcherTest;
 import org.hamcrest.Matcher;
+import org.hamcrest.core.IsInstanceOf.*;
 
 class IsInstanceOfTest extends AbstractMatcherTest
 {

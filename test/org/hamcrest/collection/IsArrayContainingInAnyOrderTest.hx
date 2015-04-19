@@ -2,6 +2,7 @@ package org.hamcrest.collection;
 
 import org.hamcrest.AbstractMatcherTest;
 import org.hamcrest.Matcher;
+import org.hamcrest.collection.IsArrayContainingInAnyOrder.*;
 
 class IsArrayContainingInAnyOrderTest extends AbstractMatcherTest
 {

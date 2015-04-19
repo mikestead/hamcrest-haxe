@@ -42,7 +42,7 @@ class IsEmptyIterable<E> extends TypeSafeMatcher<Iterable<E>>
     /**
      * Matches an empty iterable.
      */
-    public static function emptyIterable<E>():Matcher<Iterable<E>>
+    public static function isEmpty<E>():Matcher<Iterable<E>>
     {
         return new IsEmptyIterable<E>();
     }

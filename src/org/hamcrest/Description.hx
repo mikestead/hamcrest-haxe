@@ -30,11 +30,6 @@ interface Description
     /**
      * Appends a list of values to the description.
      */
-//    function <T> appendValueList(start:String, separator:String, end:String, values:Array<T>):Description;
-
-    /**
-     * Appends a list of values to the description.
-     */
     function appendValueList<T>(start:String, separator:String, end:String, values:Iterable<T>):Description;
 
     /**
