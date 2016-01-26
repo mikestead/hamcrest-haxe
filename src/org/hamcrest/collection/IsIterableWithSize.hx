@@ -22,16 +22,13 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
 
     override function featureValueOf(actual:Iterable<E>):Int
     {
-        if (Std.is(actual, Array))
-        {
-            return cast(actual).length;
-        }
-	    else
-        {
-			var size = 0;
-			for (value in actual)
-				size++;
-			return size;
+        try {
+            return cast(actual, Array<Dynamic>).length;
+        } catch(e:Dynamic) {
+            var size = 0;
+            for (value in actual)
+                size++;
+            return size;
         }
     }
     
