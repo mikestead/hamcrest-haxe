@@ -3,7 +3,7 @@
 	{
 		"name": "hamcrest-haxe",
 		"description": "Hamcrest matchers for Haxe.",
-		"version": "2.0.0",
+		"version": "2.0.1",
 		"id": "hamcrest",
 		"url": "https://github.com/mikestead/hamcrest-haxe",
 		"devDependencies": 
