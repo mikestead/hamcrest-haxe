@@ -11,7 +11,7 @@ class Build extends mtask.core.BuildBase
 	{
 		t.url = "https://github.com/mikestead/hamcrest-haxe";
 		t.description = "A library of Matchers (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.";
-		t.versionDescription = "Add Matchers and CoreMatchers. Improve api of MatcherAssert";
+		t.versionDescription = "See https://github.com/mikestead/hamcrest-haxe/blob/master/CHANGES.md";
 		t.username = "mikestead";
 		t.license = HaxeLibLicense.BSD;
 		t.addTag("cross");

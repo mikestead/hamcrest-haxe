@@ -1,3 +1,7 @@
+## 2.0.1
+
+- [#3](https://github.com/mikestead/hamcrest-haxe/pull/3) Update IsIterableWithSize.hx.
+
 ## 2.0.0
 
 - Add `org.hamcrest.Matchers` and `org.hamcrest.CoreMatchers` shortcut import classes.
@@ -14,4 +18,3 @@
 ## 1.0.0
 
 - Initial release. Ported appropriate code from Java version found at [http://code.google.com/p/hamcrest]().
-

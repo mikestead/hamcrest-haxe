@@ -24,7 +24,7 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
     {
         if (Std.is(actual, Array))
         {
-            return cast(actual,Array<Dynamic>).length;
+            return cast(actual, Array<Dynamic>).length;
         }
 	    else
         {
