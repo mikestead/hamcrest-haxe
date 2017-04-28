@@ -25,10 +25,12 @@ for the complete list of Matchers available.
 
 Examples:
 
-	import org.hamcrest.Matchers.*
-	
-	assertThat([], isEmpty());
-	assertThat("foo", is("foo"));
-	assertThat("foo", startsWith("f"));
-	assertThat(["foo", "bar"], equalTo(["foo", "bar"]));
-	assertThat(["foo", "bar"], hasItems([endsWith("r")]))
+```haxe
+import org.hamcrest.Matchers.*
+
+assertThat([], isEmpty());
+assertThat("foo", is("foo"));
+assertThat("foo", startsWith("f"));
+assertThat(["foo", "bar"], equalTo(["foo", "bar"]));
+assertThat(["foo", "bar"], hasItems([endsWith("r")]))
+```
