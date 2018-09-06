@@ -7,13 +7,13 @@ import haxe.PosInfos;
 
 class Exception
 {
-	public var name(get_name, null):String;
+	public var name(get, null):String;
 	function get_name():String { return name; }
 
-	public var message(get_message, null):String;
+	public var message(get, null):String;
 	function get_message():String { return message; }
 
-	public var cause(get_cause, null):Dynamic;
+	public var cause(get, null):Dynamic;
 	function get_cause():Dynamic { return cause; }
 
 	public var info(default, null):PosInfos;
