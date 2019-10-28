@@ -12,13 +12,13 @@ import org.hamcrest.Exception;
 class ShortcutCombination<T> extends BaseMatcher<T>
 {
     var matchers:Iterable<Matcher<T>>;
-    var operator:String;
+    var _operator:String;
 	
-    private function new(matchers:Iterable<Matcher<T>>, operator:String)
+    private function new(matchers:Iterable<Matcher<T>>, _operator:String)
     {
     	super();
         this.matchers = matchers;
-        this.operator = operator;
+        this._operator = _operator;
     }
     
     function doesMatch(value:Dynamic, shortcut:Bool):Bool 
@@ -33,6 +33,6 @@ class ShortcutCombination<T> extends BaseMatcher<T>
     
     override public function describeTo(description:Description):Void
     {
-        description.appendList("(", " " + operator + " ", ")", matchers);
+        description.appendList("(", " " + _operator + " ", ")", matchers);
     }
 }
