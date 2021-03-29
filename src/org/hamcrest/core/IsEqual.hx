@@ -89,7 +89,7 @@ class IsEqual<T> extends BaseMatcher<T>
 
     static function isArray(value:Dynamic):Bool
     {
-        return Std.is(value, Array);
+        return Std.isOfType(value, Array);
     }
 
     static function isEnum(value: Dynamic):Bool

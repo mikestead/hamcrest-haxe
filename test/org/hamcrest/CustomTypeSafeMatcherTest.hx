@@ -48,6 +48,6 @@ private class SomeCustomTypeSafeMatcher<T> extends CustomTypeSafeMatcher<T>
     
     override function isExpectedType(type:Dynamic):Bool
     {
-    	return Std.is(type, String);    
+    	return Std.isOfType(type, String);    
     }
 }

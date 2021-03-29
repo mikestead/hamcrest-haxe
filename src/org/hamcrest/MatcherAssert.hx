@@ -37,7 +37,7 @@ class MatcherAssert
 				throw new AssertionException(description.toString(), null, info);
 			}
 		}
-		else if (Std.is(actual, Bool))
+		else if (Std.isOfType(actual, Bool))
 		{
 			if (!actual)
 			{
@@ -53,19 +53,19 @@ class MatcherAssert
 	
 //	public static function assertThat2<T>(valueOne:Dynamic, ?valueTwo:Dynamic, ?matcher:Matcher<T>, ?info:PosInfos)
 //	{
-//		if (Std.is(valueOne, String) && matcher != null)
+//		if (Std.isOfType(valueOne, String) && matcher != null)
 //		{
 //			assertThatMatch(valueOne, valueTwo, matcher, info);
 //		}
-//		else if (/*Std.is(valueOne, T) &&*/ Std.is(valueTwo, Matcher) && matcher == null)
+//		else if (/*Std.isOfType(valueOne, T) &&*/ Std.isOfType(valueTwo, Matcher) && matcher == null)
 //		{
 //			assertThatMatch("", valueOne, valueTwo, info);
 //		}
-//		else if (Std.is(valueOne, String) && Std.is(valueTwo, Bool) && matcher == null)
+//		else if (Std.isOfType(valueOne, String) && Std.isOfType(valueTwo, Bool) && matcher == null)
 //		{
 //			assertThatBool(valueOne, valueTwo, info);
 //		}
-//		else if (Std.is(valueOne, Bool) && valueTwo == null && matcher == null)
+//		else if (Std.isOfType(valueOne, Bool) && valueTwo == null && matcher == null)
 //		{
 //			assertThatBool("", valueOne, info);
 //		}

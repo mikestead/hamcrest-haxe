@@ -35,7 +35,7 @@ class BaseDescription implements Description
         {
             append("null");
         }
-        else if (Std.is(value, String))
+        else if (Std.isOfType(value, String))
         {
             escapeAndAppend(cast(value, String));
         }

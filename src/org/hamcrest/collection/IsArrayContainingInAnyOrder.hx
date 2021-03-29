@@ -28,7 +28,7 @@ class IsArrayContainingInAnyOrder<T> extends TypeSafeMatcher<Array<T>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, Array);
+    	return Std.isOfType(value, Array);
     }
     
     override function describeMismatchSafely(item:Array<T>, mismatchDescription:Description)

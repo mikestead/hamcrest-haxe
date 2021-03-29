@@ -133,11 +133,11 @@ private class ComparatorEg
 	public function compareTo(data:Dynamic):Int
 	{
 		var expected:Float = -1;
-		if (Std.is(data, ComparatorEg))
+		if (Std.isOfType(data, ComparatorEg))
 			expected = data.value;
-		else if (Std.is(data, Int) || Std.is(data, Float))
+		else if (Std.isOfType(data, Int) || Std.isOfType(data, Float))
 			expected = data;
-		else if (Std.is(data, Date))
+		else if (Std.isOfType(data, Date))
 			expected = cast(data, Date).getTime();
 		
 		return Reflect.compare(value, expected);

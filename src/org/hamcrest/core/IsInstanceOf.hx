@@ -39,7 +39,7 @@ class IsInstanceOf extends DiagnosingMatcher<Dynamic>
 			return false;
 		}
       
-		if (!Std.is(item, expectedClass))
+		if (!Std.isOfType(item, expectedClass))
 		{
 			var type = Type.getClass(item);
 			var className = type != null ? Type.getClassName(type) : "Dynamic";

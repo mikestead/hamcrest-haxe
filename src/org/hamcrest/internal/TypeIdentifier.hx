@@ -15,7 +15,7 @@ class TypeIdentifier
 		if (value == null)
 			return false;
 			
-		if (Std.is(value, Array))
+		if (Std.isOfType(value, Array))
 			return true;
 
 		var field = Reflect.field(value, "iterator");
@@ -43,7 +43,7 @@ class TypeIdentifier
 	
 	public static function isComparablePrimitive(value:Dynamic):Bool
 	{
-		return (isNumber(value) || Std.is(value, String));
+		return (isNumber(value) || Std.isOfType(value, String));
 	}
 	
 	public static function hasCompareToFunction(value:Dynamic):Bool
@@ -60,7 +60,7 @@ class TypeIdentifier
 		if (isComparablePrimitive(value))
 			return true;
 		
-		if (Std.is(value, Date)) // assumes we'll be comparing date.getTime()
+		if (Std.isOfType(value, Date)) // assumes we'll be comparing date.getTime()
 			return true;
 		
 		if (hasCompareToFunction(value))

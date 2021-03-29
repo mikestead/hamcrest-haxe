@@ -33,7 +33,7 @@ class IsArrayContaining<T> extends TypeSafeMatcher<Array<T>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, Array);
+    	return Std.isOfType(value, Array);
     }
 
     override function describeMismatchSafely(item:Array<T>, mismatchDescription:Description):Void
@@ -53,7 +53,7 @@ class IsArrayContaining<T> extends TypeSafeMatcher<Array<T>>
      */
     public static function hasItemInArray<T>(element:Dynamic):Matcher<Array<T>>
     {
-    	if (Std.is(element, Matcher))
+    	if (Std.isOfType(element, Matcher))
 	        return new IsArrayContaining<T>(element);
 	    
 	    return hasItemInArray(IsEqual.equalTo(element));

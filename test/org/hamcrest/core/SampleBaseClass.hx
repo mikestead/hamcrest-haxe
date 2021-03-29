@@ -16,6 +16,6 @@ class SampleBaseClass
 
     public function equals(obj:Dynamic):Bool
     {
-        return Std.is(obj, SampleBaseClass) && value == cast(obj, SampleBaseClass).value;
+        return Std.isOfType(obj, SampleBaseClass) && value == cast(obj, SampleBaseClass).value;
     }
 }

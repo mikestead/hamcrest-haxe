@@ -59,7 +59,7 @@ class TypeSafeMatcherSubclass extends TypeSafeMatcher<String>
     
     override function isExpectedType(type:Dynamic):Bool
     {
-    	return Std.is(type, String);    
+    	return Std.isOfType(type, String);    
     }
 }
 

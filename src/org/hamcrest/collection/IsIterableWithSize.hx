@@ -22,7 +22,7 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
 
     override function featureValueOf(actual:Iterable<E>):Int
     {
-        if (Std.is(actual, Array))
+        if (Std.isOfType(actual, Array))
         {
             return cast(actual, Array<Dynamic>).length;
         }
@@ -50,7 +50,7 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
 	{
 		featureName = FEATURE_NAME;
 		featureDescription = FEATURE_DESCRIPTION;
-		if (Std.is(actual, Array))
+		if (Std.isOfType(actual, Array))
 		{
 			featureName = featureName.split("iterable").join("array");
 			featureDescription =featureDescription.split("iterable").join("array");
@@ -67,9 +67,9 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
      */
     public static function hasSize<T>(value:Dynamic):Matcher<Iterable<T>>
     {
-    	if (Std.is(value, Matcher))
+    	if (Std.isOfType(value, Matcher))
     		return new IsIterableWithSize<T>(value);
-    	else if (Std.is(value, Int))
+    	else if (Std.isOfType(value, Int))
     		return hasSize(IsEqual.equalTo(value));
     	
     	throw new IllegalArgumentException();

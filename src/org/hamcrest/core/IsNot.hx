@@ -42,7 +42,7 @@ class IsNot<T> extends BaseMatcher<T>
      */
     public static function not<T>(value:Dynamic):Matcher<T>
     {
-    	if (Std.is(value, Matcher))
+    	if (Std.isOfType(value, Matcher))
     		return new IsNot<T>(value);
     	
     	return not(IsEqual.equalTo(value));

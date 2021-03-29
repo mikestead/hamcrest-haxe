@@ -21,6 +21,6 @@ private class SomeCustomMatcher<T> extends CustomMatcher<T>
 	
     override public function matches(item:Dynamic):Bool
     {
-        return Std.is(item, String);
+        return Std.isOfType(item, String);
     }
 }

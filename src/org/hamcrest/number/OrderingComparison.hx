@@ -50,7 +50,7 @@ class OrderingComparison extends TypeSafeMatcher<Dynamic>
 			{
 				value = Reflect.compare(actual, expected);
 			}
-			else if (TypeIdentifier.isNumber(actual) && Std.is(expected, Date))
+			else if (TypeIdentifier.isNumber(actual) && Std.isOfType(expected, Date))
 			{
 				value = Reflect.compare(actual, cast(expected, Date).getTime());
 			}
@@ -65,13 +65,13 @@ class OrderingComparison extends TypeSafeMatcher<Dynamic>
 				throw new IllegalArgumentException("Expected value is not of a comparable type. [" + expected + "]");
 			}
 		}
-		else if (Std.is(actual, Date))
+		else if (Std.isOfType(actual, Date))
 		{
 			if (TypeIdentifier.isNumber(expected))
 			{
 				value = Reflect.compare(cast(actual, Date).getTime(), expected);
 			}
-			else if (Std.is(expected, Date))
+			else if (Std.isOfType(expected, Date))
 			{
 				value = Reflect.compare(cast(actual, Date).getTime(), cast(expected, Date).getTime());
 			}

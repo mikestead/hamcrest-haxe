@@ -38,7 +38,7 @@ class SubstringMatcher extends TypeSafeMatcher<String>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, String);    
+    	return Std.isOfType(value, String);    
     }
 
     function evalSubstringOf(string:String):Bool
