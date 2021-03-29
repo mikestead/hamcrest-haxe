@@ -7,3 +7,4 @@ Thumbs.db
 .DS_Store
 TestSuite.hx
 .mcover
+vscode-project.hxml

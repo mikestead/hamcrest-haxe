@@ -1,7 +1,7 @@
 <project name="hamcrest" url="https://github.com/mikestead/hamcrest-haxe" license="BSD">
 	<user name="mikestead"/>
 	<description><![CDATA[A library of Matchers (also known as constraints or predicates) allowing 'match' rules to be defined declaratively, to be used in other frameworks. Typical scenarios include testing frameworks, mocking libraries and UI validation rules.]]></description>
-	<version name="2.0.1"><![CDATA[See https://github.com/mikestead/hamcrest-haxe/blob/master/CHANGES.md]]></version>
+	<version name="3.0.0"><![CDATA[See https://github.com/mikestead/hamcrest-haxe/blob/master/CHANGES.md]]></version>
 	<tag v="cross"/>
 	<tag v="unit"/>
 	<tag v="unittest"/>

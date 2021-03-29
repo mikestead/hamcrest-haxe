@@ -13,7 +13,7 @@
 	"mikestead"
 ],
 	"releasenote": "See https://github.com/mikestead/hamcrest-haxe/blob/master/CHANGES.md",
-	"version": "2.0.1",
+	"version": "3.0.0",
 	"url": "https://github.com/mikestead/hamcrest-haxe",
 	"dependencies": 
 	{

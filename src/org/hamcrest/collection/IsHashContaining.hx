@@ -4,6 +4,7 @@
 
 package org.hamcrest.collection;
 
+import haxe.Constraints.IMap;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -33,7 +34,7 @@ class IsHashContaining<K, V> extends TypeSafeMatcher<Map<K, V>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, Map.IMap);
+    	return Std.is(value, IMap);
     }
 
     override function describeMismatchSafely(hash:Map<K, V>, mismatchDescription:Description)
