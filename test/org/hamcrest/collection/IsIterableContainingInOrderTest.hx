@@ -100,6 +100,6 @@ class WithValueFeatureMatcher<U> extends FeatureMatcher<WithValue, U>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, WithValue);
+    	return Std.isOfType(value, WithValue);
     }
 }

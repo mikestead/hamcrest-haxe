@@ -44,7 +44,7 @@ class VarArgMatchers
 	                                 ?tenth:Dynamic):Array<Matcher<T>>
     {
     	var matchers:Array<Matcher<T>> = [];
-    	if (Std.is(first, Array))
+    	if (Std.isOfType(first, Array))
     	{
     		var items:Array<Dynamic> = cast first;
 			for (item in items) matchers.push(getMatcher(item));
@@ -69,7 +69,7 @@ class VarArgMatchers
 
 	static function getMatcher<T>(item:Dynamic):Matcher<T>
 	{
-		if (Std.is(item, Matcher))
+		if (Std.isOfType(item, Matcher))
 			return cast item;
 		else
 			return IsEqual.equalTo(item);

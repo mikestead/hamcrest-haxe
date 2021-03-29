@@ -34,7 +34,7 @@ class IsHashContaining<K, V> extends TypeSafeMatcher<Map<K, V>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, IMap);
+    	return Std.isOfType(value, IMap);
     }
 
     override function describeMismatchSafely(hash:Map<K, V>, mismatchDescription:Description)
@@ -90,7 +90,7 @@ class IsHashContaining<K, V> extends TypeSafeMatcher<Map<K, V>>
     
     static function getMatcher<T>(value:Dynamic):Matcher<T>
     {    	
-    	return Std.is(value, Matcher) ? value : IsEqual.equalTo(value);
+    	return Std.isOfType(value, Matcher) ? value : IsEqual.equalTo(value);
     }
 }
 

@@ -53,7 +53,7 @@ class IsCollectionContaining<T> extends TypeSafeDiagnosingMatcher<Iterable<T>>
     
     public static function hasItem<T>(value:Dynamic):Matcher<Iterable<T>>
     {
-    	if (Std.is(value, Matcher))
+    	if (Std.isOfType(value, Matcher))
     		return new IsCollectionContaining<T>(value);
     	
     	return new IsCollectionContaining<T>(IsEqual.equalTo(value));
@@ -67,7 +67,7 @@ class IsCollectionContaining<T> extends TypeSafeDiagnosingMatcher<Iterable<T>>
     		
     		if (values.length > 0)
 	    	{
-	    		if (Std.is(values[0], Matcher))
+	    		if (Std.isOfType(values[0], Matcher))
 	    		{
 					
 				    for (elementMatcher in values)

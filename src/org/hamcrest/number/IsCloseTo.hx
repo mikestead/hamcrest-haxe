@@ -32,7 +32,7 @@ class IsCloseTo extends TypeSafeMatcher<Float>
 
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, Float);   
+    	return Std.isOfType(value, Float);   
     }
     
     override function describeMismatchSafely(item:Float, mismatchDescription:Description)

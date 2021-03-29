@@ -43,10 +43,10 @@ class Is<T> extends BaseMatcher<T>
 
 	public static function is<T>(value:Dynamic):Matcher<T>
 	{
-		if (Std.is(value, Matcher))
+		if (Std.isOfType(value, Matcher))
 			return new Is<T>(value);
 
-		if (Std.is(value, Class))
+		if (Std.isOfType(value, Class))
 			return isA(value);
 
 		return is(IsEqual.equalTo(value));

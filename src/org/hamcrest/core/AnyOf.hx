@@ -38,11 +38,11 @@ class AnyOf<T> extends ShortcutCombination<T>
     {
     
     	var matchers:Array<Matcher<T>>;
-    	if (Std.is(first, Array))
+    	if (Std.isOfType(first, Array))
     	{
     		matchers = cast first;
     	}
-    	else if (Std.is(first, Matcher))
+    	else if (Std.isOfType(first, Matcher))
     	{
     		matchers = [];
     		matchers.push(cast first);
