@@ -8,6 +8,12 @@ import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.Exception;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 class SubstringMatcher extends TypeSafeMatcher<String>
 {
     var substring:String;
@@ -38,7 +44,7 @@ class SubstringMatcher extends TypeSafeMatcher<String>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, String);    
+    	return isOfType(value, String);
     }
 
     function evalSubstringOf(string:String):Bool

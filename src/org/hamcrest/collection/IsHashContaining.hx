@@ -11,6 +11,11 @@ import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsAnything;
 import org.hamcrest.core.IsEqual;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
 
 class IsHashContaining<K, V> extends TypeSafeMatcher<Map<K, V>>
 {
@@ -34,7 +39,7 @@ class IsHashContaining<K, V> extends TypeSafeMatcher<Map<K, V>>
     
     override function isExpectedType(value:Dynamic):Bool
     {
-    	return Std.is(value, IMap);
+    	return isOfType(value, IMap);
     }
 
     override function describeMismatchSafely(hash:Map<K, V>, mismatchDescription:Description)
@@ -90,7 +95,7 @@ class IsHashContaining<K, V> extends TypeSafeMatcher<Map<K, V>>
     
     static function getMatcher<T>(value:Dynamic):Matcher<T>
     {    	
-    	return Std.is(value, Matcher) ? value : IsEqual.equalTo(value);
+    	return isOfType(value, Matcher) ? value : IsEqual.equalTo(value);
     }
 }
 

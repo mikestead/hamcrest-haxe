@@ -5,6 +5,13 @@
 package org.hamcrest.internal;
 
 import Type.ValueType;
+
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 class TypeIdentifier
 {
 	private function new()
@@ -15,7 +22,7 @@ class TypeIdentifier
 		if (value == null)
 			return false;
 			
-		if (Std.is(value, Array))
+		if (isOfType(value, Array))
 			return true;
 
 		var field = Reflect.field(value, "iterator");
@@ -43,7 +50,7 @@ class TypeIdentifier
 	
 	public static function isComparablePrimitive(value:Dynamic):Bool
 	{
-		return (isNumber(value) || Std.is(value, String));
+		return (isNumber(value) || isOfType(value, String));
 	}
 	
 	public static function hasCompareToFunction(value:Dynamic):Bool
@@ -60,7 +67,7 @@ class TypeIdentifier
 		if (isComparablePrimitive(value))
 			return true;
 		
-		if (Std.is(value, Date)) // assumes we'll be comparing date.getTime()
+		if (isOfType(value, Date)) // assumes we'll be comparing date.getTime()
 			return true;
 		
 		if (hasCompareToFunction(value))

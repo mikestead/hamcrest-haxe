@@ -10,6 +10,11 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
 
 /**
  * Is the value equal to another value, as tested by the
@@ -89,7 +94,7 @@ class IsEqual<T> extends BaseMatcher<T>
 
     static function isArray(value:Dynamic):Bool
     {
-        return Std.is(value, Array);
+        return isOfType(value, Array);
     }
 
     static function isEnum(value: Dynamic):Bool

@@ -9,6 +9,12 @@ import org.hamcrest.Exception;
 import org.hamcrest.core.IsEqual;
 import haxe.PosInfos;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 class VarArgMatchers
 {
     public static function newIterable<T>(type:Class<Matcher<Iterable<T>>>, 
@@ -44,7 +50,7 @@ class VarArgMatchers
 	                                 ?tenth:Dynamic):Array<Matcher<T>>
     {
     	var matchers:Array<Matcher<T>> = [];
-    	if (Std.is(first, Array))
+    	if (isOfType(first, Array))
     	{
     		var items:Array<Dynamic> = cast first;
 			for (item in items) matchers.push(getMatcher(item));
@@ -69,7 +75,7 @@ class VarArgMatchers
 
 	static function getMatcher<T>(item:Dynamic):Matcher<T>
 	{
-		if (Std.is(item, Matcher))
+		if (isOfType(item, Matcher))
 			return cast item;
 		else
 			return IsEqual.equalTo(item);

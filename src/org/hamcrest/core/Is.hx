@@ -9,6 +9,12 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Exception;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
  * Decorates another Matcher, retaining the behavior but allowing tests
  * to be slightly more expressive.
@@ -43,10 +49,10 @@ class Is<T> extends BaseMatcher<T>
 
 	public static function is<T>(value:Dynamic):Matcher<T>
 	{
-		if (Std.is(value, Matcher))
+		if (isOfType(value, Matcher))
 			return new Is<T>(value);
 
-		if (Std.is(value, Class))
+		if (isOfType(value, Class))
 			return isA(value);
 
 		return is(IsEqual.equalTo(value));

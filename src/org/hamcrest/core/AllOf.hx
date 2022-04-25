@@ -9,6 +9,11 @@ import org.hamcrest.DiagnosingMatcher;
 import org.hamcrest.Matcher;
 import org.hamcrest.Exception;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
 
 /**
  * Calculates the logical conjunction of multiple matchers. Evaluation is shortcut, so
@@ -55,11 +60,11 @@ class AllOf<T> extends DiagnosingMatcher<T>
     							 ?tenth:Matcher<T>):AllOf<T>
     {
     	var matchers:Array<Matcher<T>>;
-    	if (Std.is(first, Array))
+    	if (isOfType(first, Array))
     	{
     		matchers = cast first;
     	}
-    	else if (Std.is(first, Matcher))
+    	else if (isOfType(first, Matcher))
     	{
     		matchers = [];
     		matchers.push(cast first);

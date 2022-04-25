@@ -7,6 +7,12 @@ package org.hamcrest;
 import org.hamcrest.internal.SelfDescribingValueIterator;
 import org.hamcrest.Exception;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using org.hamcrest.internal.TypeIdentifier;
 
 /**
@@ -35,7 +41,7 @@ class BaseDescription implements Description
         {
             append("null");
         }
-        else if (Std.is(value, String))
+        else if (isOfType(value, String))
         {
             escapeAndAppend(cast(value, String));
         }

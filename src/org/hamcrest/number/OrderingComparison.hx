@@ -6,6 +6,12 @@ import org.hamcrest.Matcher;
 import org.hamcrest.internal.TypeIdentifier;
 import org.hamcrest.Exception;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 class OrderingComparison extends TypeSafeMatcher<Dynamic>
 {
 	static var LESS_THAN:Int = -1;
@@ -50,7 +56,7 @@ class OrderingComparison extends TypeSafeMatcher<Dynamic>
 			{
 				value = Reflect.compare(actual, expected);
 			}
-			else if (TypeIdentifier.isNumber(actual) && Std.is(expected, Date))
+			else if (TypeIdentifier.isNumber(actual) && isOfType(expected, Date))
 			{
 				value = Reflect.compare(actual, cast(expected, Date).getTime());
 			}
@@ -65,13 +71,13 @@ class OrderingComparison extends TypeSafeMatcher<Dynamic>
 				throw new IllegalArgumentException("Expected value is not of a comparable type. [" + expected + "]");
 			}
 		}
-		else if (Std.is(actual, Date))
+		else if (isOfType(actual, Date))
 		{
 			if (TypeIdentifier.isNumber(expected))
 			{
 				value = Reflect.compare(cast(actual, Date).getTime(), expected);
 			}
-			else if (Std.is(expected, Date))
+			else if (isOfType(expected, Date))
 			{
 				value = Reflect.compare(cast(actual, Date).getTime(), cast(expected, Date).getTime());
 			}

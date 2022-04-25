@@ -10,6 +10,12 @@ import org.hamcrest.Exception;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.internal.TypeIdentifier;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
 {
 	static var FEATURE_NAME = "iterable size";
@@ -22,7 +28,7 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
 
     override function featureValueOf(actual:Iterable<E>):Int
     {
-        if (Std.is(actual, Array))
+        if (isOfType(actual, Array))
         {
             return cast(actual, Array<Dynamic>).length;
         }
@@ -50,7 +56,7 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
 	{
 		featureName = FEATURE_NAME;
 		featureDescription = FEATURE_DESCRIPTION;
-		if (Std.is(actual, Array))
+		if (isOfType(actual, Array))
 		{
 			featureName = featureName.split("iterable").join("array");
 			featureDescription =featureDescription.split("iterable").join("array");
@@ -67,9 +73,9 @@ class IsIterableWithSize<E> extends FeatureMatcher<Iterable<E>, Int>
      */
     public static function hasSize<T>(value:Dynamic):Matcher<Iterable<T>>
     {
-    	if (Std.is(value, Matcher))
+    	if (isOfType(value, Matcher))
     		return new IsIterableWithSize<T>(value);
-    	else if (Std.is(value, Int))
+    	else if (isOfType(value, Int))
     		return hasSize(IsEqual.equalTo(value));
     	
     	throw new IllegalArgumentException();

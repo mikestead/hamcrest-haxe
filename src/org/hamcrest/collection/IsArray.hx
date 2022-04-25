@@ -10,6 +10,12 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.Exception;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
  * Matcher for array whose elements satisfy a sequence of matchers.
  * The array size must equal the number of element matchers.
@@ -38,7 +44,7 @@ class IsArray<T> extends TypeSafeMatcher<Array<T>>
 	
 	override function isExpectedType(value:Dynamic):Bool
 	{
-		return Std.is(value, Array);
+		return isOfType(value, Array);
 	}
 
 	override function describeMismatchSafely(actual:Array<T>, mismatchDescription:Description):Void
