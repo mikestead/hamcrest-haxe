@@ -10,6 +10,12 @@ import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.hamcrest.Exception;
 import org.hamcrest.internal.TypeIdentifier;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 class IsCollectionContaining<T> extends TypeSafeDiagnosingMatcher<Iterable<T>> 
 {
     var elementMatcher:Matcher<T>;
@@ -53,7 +59,7 @@ class IsCollectionContaining<T> extends TypeSafeDiagnosingMatcher<Iterable<T>>
     
     public static function hasItem<T>(value:Dynamic):Matcher<Iterable<T>>
     {
-    	if (Std.is(value, Matcher))
+    	if (isOfType(value, Matcher))
     		return new IsCollectionContaining<T>(value);
     	
     	return new IsCollectionContaining<T>(IsEqual.equalTo(value));
@@ -67,7 +73,7 @@ class IsCollectionContaining<T> extends TypeSafeDiagnosingMatcher<Iterable<T>>
     		
     		if (values.length > 0)
 	    	{
-	    		if (Std.is(values[0], Matcher))
+	    		if (isOfType(values[0], Matcher))
 	    		{
 					
 				    for (elementMatcher in values)

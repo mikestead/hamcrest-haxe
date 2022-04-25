@@ -10,6 +10,12 @@ import org.hamcrest.Description;
 import org.hamcrest.DiagnosingMatcher;
 import org.hamcrest.Matcher;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 
 /**
  * Tests whether the value is an instance of a class.
@@ -39,7 +45,7 @@ class IsInstanceOf extends DiagnosingMatcher<Dynamic>
 			return false;
 		}
       
-		if (!Std.is(item, expectedClass))
+		if (!isOfType(item, expectedClass))
 		{
 			var type = Type.getClass(item);
 			var className = type != null ? Type.getClassName(type) : "Dynamic";

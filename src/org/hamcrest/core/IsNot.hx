@@ -10,6 +10,11 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
 
 /**
  * Calculates the logical negation of a matcher.
@@ -42,7 +47,7 @@ class IsNot<T> extends BaseMatcher<T>
      */
     public static function not<T>(value:Dynamic):Matcher<T>
     {
-    	if (Std.is(value, Matcher))
+    	if (isOfType(value, Matcher))
     		return new IsNot<T>(value);
     	
     	return not(IsEqual.equalTo(value));

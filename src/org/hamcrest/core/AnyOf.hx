@@ -9,6 +9,12 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Exception;
 
+#if (haxe_ver >= 4.2)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
  * Calculates the logical disjunction of multiple matchers. Evaluation is shortcut, so
  * subsequent matchers are not called if an earlier matcher returns <code>true</code>.
@@ -38,11 +44,11 @@ class AnyOf<T> extends ShortcutCombination<T>
     {
     
     	var matchers:Array<Matcher<T>>;
-    	if (Std.is(first, Array))
+    	if (isOfType(first, Array))
     	{
     		matchers = cast first;
     	}
-    	else if (Std.is(first, Matcher))
+    	else if (isOfType(first, Matcher))
     	{
     		matchers = [];
     		matchers.push(cast first);
